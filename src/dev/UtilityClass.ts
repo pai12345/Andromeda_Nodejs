@@ -12,6 +12,10 @@ class Utility extends Proto_Utility {
     super();
     this.Status;
   }
+  Query_All_Table(data: string) {
+    const query = `SELECT * FROM ${data}`;
+    return query;
+  }
 }
 
 /**

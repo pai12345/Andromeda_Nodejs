@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { Request_HomePage, Request_404 } from "../controller/controller";
+import {
+  Request_HomePage,
+  Request_404,
+  Request_AuthenticateUser,
+} from "../controller/controller";
 const router = Router();
 
 /**
@@ -8,6 +12,13 @@ const router = Router();
  * API for Home Page
  */
 router.get("/", Request_HomePage);
+
+/**
+ * API - Authenticate User
+ * @description
+ * API for Authenticating User
+ */
+router.post("/Auth", Request_AuthenticateUser);
 
 /**
  * API - 404 Not Found

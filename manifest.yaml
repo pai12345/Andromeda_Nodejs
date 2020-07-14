@@ -1,0 +1,10 @@
+applications:
+  - name: server
+    instances: 1
+    disk_quota: 1000M
+    memory: 1000M
+    path: ./
+    routes:
+      - route: https://server.cfapps.eu10.hana.ondemand.com
+    buildpacks:
+      - nodejs_buildpack
