@@ -1,8 +1,9 @@
 node_modules/
 src/
-.env
 .gitignore
+manifest.yaml
 README.md
 tsconfig.json
 webpack.config.js
 webpack.config.prod.js
+.DS_Store

@@ -1,3 +1,4 @@
+//===============Enum===============//
 /**
  * Enumeration for API Status
  * @description
@@ -16,4 +17,13 @@ export enum Status {
   PageNotFoundTitlte = "Service Not Found",
   PageNotFoundBody = `404 - Service Not Found`,
   ListeningonPort = "Listening on Port",
+}
+//===============Interface===============//
+/**
+ * Interface - Authentication
+ * @description
+ * Interface for User Authentication
+ */
+export interface User_Authentication {
+  length: number;
 }

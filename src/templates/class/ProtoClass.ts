@@ -4,5 +4,5 @@
  * Base Template for Utility Class
  */
 export abstract class Proto_Utility {
-  abstract Query_All_Table(data: string): string;
+  abstract Query_AuthenticateUser(username: string, password: string): string;
 }

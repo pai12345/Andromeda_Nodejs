@@ -1,2 +1,12 @@
+# dependencies
 node_modules/
+
+# build
 dist/
+
+# types & source maps
+**.d.ts
+**.map
+
+#misc
+.DS_Store

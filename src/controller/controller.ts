@@ -47,11 +47,11 @@ export const Request_AuthenticateUser: RequestHandler = async (
   next
 ) => {
   try {
-    const text = oServe.Query_All_Table(
-      `public."Customers" WHERE email='${req.body.User}'`
-    );
+    const { username, password } = req.body;
+    const text = oServe.Query_AuthenticateUser(username, password);
     const query = await client.query(text);
-    res.status(oServe.Status.Success).send(query.rows);
+    const Authentication = oServe.CheckUser_Authentication(query.rows);
+    res.status(oServe.Status.Success).send(Authentication);
   } catch (e) {
     next(e);
     res.status(oServe.Status.ServerError).send(e.message);
