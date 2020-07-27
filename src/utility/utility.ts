@@ -1,4 +1,4 @@
-//===============Enum===============//
+//=============================Enum================================//
 /**
  * Enumeration for API Status
  * @description
@@ -17,6 +17,16 @@ export enum Status {
   PageNotFoundTitlte = "Service Not Found",
   PageNotFoundBody = `404 - Service Not Found`,
   ListeningonPort = "Listening on Port",
+}
+
+//============Utility=============//
+/**
+ * Enumeration for Utility
+ * @description
+ * Enumeration having details for Utility
+ */
+export enum Util_enum {
+  NotResponding = "Server did not response with any data",
 }
 //===============Interface===============//
 /**

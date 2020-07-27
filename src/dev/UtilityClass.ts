@@ -1,5 +1,5 @@
 import { Proto_Utility } from "../templates/class/ProtoClass";
-import { Status, User_Authentication } from "../utility/utility";
+import { Status, User_Authentication, Util_enum } from "../utility/utility";
 
 /**
  * Class - Utility
@@ -12,15 +12,18 @@ class Utility extends Proto_Utility {
     super();
     this.Status;
   }
-  Query_AuthenticateUser(username: string, password: string) {
-    const query = `SELECT name, password FROM public."Customers" WHERE name='${username}' AND password=crypt('${password}', password)`;
+  Query_GetCustomer(username: string, password: string) {
+    const query = `SELECT (public.customers_getcustomer_function('${username}','${password}')).*`;
     return query;
   }
   CheckUser_Authentication(data: User_Authentication) {
-    if (data.length > 0) {
-      return "Authenticated";
-    } else {
-      return "Unkown";
+    const datacheck = data ?? Util_enum.NotResponding;
+    switch (datacheck) {
+      case Util_enum.NotResponding:
+        return Util_enum.NotResponding;
+      default:
+        const validate = datacheck.length > 0 ? "Authenticated" : "Unkown";
+        return validate;
     }
   }
 }

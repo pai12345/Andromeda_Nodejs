@@ -48,7 +48,7 @@ export const Request_AuthenticateUser: RequestHandler = async (
 ) => {
   try {
     const { username, password } = req.body;
-    const text = oServe.Query_AuthenticateUser(username, password);
+    const text = oServe.Query_GetCustomer(username, password);
     const query = await client.query(text);
     const Authentication = oServe.CheckUser_Authentication(query.rows);
     res.status(oServe.Status.Success).send(Authentication);
