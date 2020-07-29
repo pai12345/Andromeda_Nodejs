@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   Request_HomePage,
   Request_404,
-  Request_AuthenticateUser,
+  // Request_AuthenticateUser,
 } from "../controller/controller";
 const router = Router();
 
@@ -13,12 +13,12 @@ const router = Router();
  */
 router.get("/", Request_HomePage);
 
-/**
- * API - Authenticate User
- * @description
- * API for Authenticating User
- */
-router.post("/Auth", Request_AuthenticateUser);
+// /**
+//  * API - Authenticate User
+//  * @description
+//  * API for Authenticating User
+//  */
+// router.post("/Auth", Request_AuthenticateUser);
 
 /**
  * API - 404 Not Found

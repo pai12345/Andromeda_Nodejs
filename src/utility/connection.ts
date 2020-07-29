@@ -7,11 +7,9 @@ import { Client } from "pg";
  */
 export const client = new Client({
   user: "postgresadmin",
-  host: "192.168.1.9",
+  host: "192.168.1.2",
   database: "Commerce",
   password: "admin123",
-  port: 31373,
+  port: 31861,
 });
 client.connect();
-
-// console.log(client);
