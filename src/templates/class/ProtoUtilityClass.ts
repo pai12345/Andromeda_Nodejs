@@ -12,7 +12,8 @@ abstract class Proto_Utility implements Proto_Utility_interface {
   abstract Validate_Data(data: string, type: string): boolean | string;
   abstract GenerateMessage_graphql(
     data: GenerateMessage_graphql_input_interface
-  ): any;
+  ): { message: string; statusCode: number; statusMessage: string };
+  abstract Query(sql: string, params: string[]): any;
 }
 
 export default Proto_Utility;

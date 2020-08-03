@@ -1,12 +1,12 @@
 import { oServe_Utility } from "./dev/UtilityClass";
+import { URL_enum } from "./utility/utility";
 import express, { json } from "express";
-// import router from "./routes/route";
 import compression from "compression";
 import cors from "cors";
 import helmet from "helmet";
 import { graphqlHTTP } from "express-graphql";
-import { Schema_ValidateCustomer } from "./templates/service/graphql/schema";
-import { resolver } from "./templates/service/graphql/resolver";
+import { typeDefs } from "./templates/service/schema";
+import { resolvers } from "./templates/service/resolver";
 
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -16,13 +16,12 @@ app.use(cors({ origin: "*" }));
 app.use(helmet());
 app.use(compression());
 
-// app.use("/api/", router);
 app.use(
-  "/api/Andromeda",
+  URL_enum.GraphQLEndpoint,
   graphqlHTTP({
-    schema: Schema_ValidateCustomer,
-    rootValue: resolver,
-    graphiql: false,
+    schema: typeDefs,
+    rootValue: resolvers,
+    graphiql: true,
     customFormatErrorFn: (error) => {
       return oServe_Utility.GenerateMessage_graphql(error);
     },

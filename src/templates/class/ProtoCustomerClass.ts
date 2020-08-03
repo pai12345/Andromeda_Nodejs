@@ -1,5 +1,6 @@
 import {
-  User_Authentication,
+  User_Authentication_Request,
+  User_Authentication_Response,
   Customer_GetCustomerDetails_interface,
   Proto_Customer_interface,
 } from "../../utility/utility";
@@ -10,11 +11,13 @@ import {
  * Base Template for Customers Class Prototype
  */
 abstract class Proto_Customer implements Proto_Customer_interface {
-  abstract Query_GetCustomer(username: string, password: string): string;
+  abstract Query_GetCustomer(): string;
   abstract Validate_GetCustomerDetails(
     data: Customer_GetCustomerDetails_interface
   ): Customer_GetCustomerDetails_interface;
-  abstract CheckUser_Authentication(data: User_Authentication): string;
+  abstract CheckUser_Authentication(
+    data: User_Authentication_Request
+  ): User_Authentication_Response;
 }
 
 export default Proto_Customer;

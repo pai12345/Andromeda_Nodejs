@@ -1,9 +1,9 @@
 import Proto_Customer from "../templates/class/ProtoCustomerClass";
 import { oServe_Utility } from "../dev/UtilityClass";
 import {
-  User_Authentication,
+  User_Authentication_Request,
   Customer_GetCustomerDetails_interface,
-  Error_enum,
+  Error_Customer_enum,
   Status,
   Proto_Customer_interface,
 } from "../utility/utility";
@@ -21,12 +21,10 @@ class Customer extends Proto_Customer implements Proto_Customer_interface {
    * Function - Generate Query GetCustomer
    * @description
    * Function to Generate Query for fetching Customer
-   * @params username: Customer Email Address
-   * @params password: Customer Password
    * @returns SQL Query
    */
-  Query_GetCustomer(username: string, password: string) {
-    const query = `SELECT (public.customers_getcustomer_function('${username}','${password}')).*`;
+  Query_GetCustomer() {
+    const query = `SELECT (public.customers_getcustomer_function($1,$2)).*`;
     return query;
   }
   /**
@@ -39,41 +37,62 @@ class Customer extends Proto_Customer implements Proto_Customer_interface {
   Validate_GetCustomerDetails(
     data: Customer_GetCustomerDetails_interface
   ): Customer_GetCustomerDetails_interface {
-    const username = data.username ?? Error_enum.Customer_UsernameInvalid;
-    const password = data.password ?? Error_enum.Customer_PasswordInvalid;
+    const username =
+      data.username ?? Error_Customer_enum.Customer_UsernameInvalid;
+    const password =
+      data.password ?? Error_Customer_enum.Customer_PasswordInvalid;
     const result = Object.create(null);
 
     switch (username) {
-      case Error_enum.Customer_UsernameInvalid:
-        result.username = Error_enum.Customer_UsernameInvalid;
+      case Error_Customer_enum.Customer_UsernameInvalid:
+        result.username = Error_Customer_enum.Customer_UsernameInvalid;
         break;
       default:
-        if (oServe_Utility.Validate_Data(username, "Empty")) {
-          result.username = Error_enum.Customer_UsernameEmpty;
+        if (
+          oServe_Utility.Validate_Data(
+            username,
+            Error_Customer_enum.Customer_Empty
+          )
+        ) {
+          result.username = Error_Customer_enum.Customer_UsernameEmpty;
           break;
-        }
-        if (oServe_Utility.Validate_Data(username, "Email") === false) {
-          result.username = Error_enum.Customer_InvalidEmailAddress;
+        } else if (
+          oServe_Utility.Validate_Data(
+            username,
+            Error_Customer_enum.Customer_Email
+          ) === false
+        ) {
+          result.username = Error_Customer_enum.Customer_InvalidEmailAddress;
           break;
         } else {
-          result.username = Error_enum.Customer_Valid;
+          result.username = Error_Customer_enum.Customer_Valid;
           break;
         }
     }
 
     switch (password) {
-      case Error_enum.Customer_PasswordInvalid:
-        result.password = Error_enum.Customer_PasswordInvalid;
+      case Error_Customer_enum.Customer_PasswordInvalid:
+        result.password = Error_Customer_enum.Customer_PasswordInvalid;
         break;
       default:
-        if (oServe_Utility.Validate_Data(password, "Empty")) {
-          result.password = Error_enum.Customer_PasswordEmpty;
+        if (
+          oServe_Utility.Validate_Data(
+            password,
+            Error_Customer_enum.Customer_Empty
+          )
+        ) {
+          result.password = Error_Customer_enum.Customer_PasswordEmpty;
           break;
-        } else if (oServe_Utility.Validate_Data(password, "Length") === false) {
-          result.password = Error_enum.Customer_PasswordLength;
+        } else if (
+          oServe_Utility.Validate_Data(
+            password,
+            Error_Customer_enum.Customer_Length
+          ) === false
+        ) {
+          result.password = Error_Customer_enum.Customer_PasswordLength;
           break;
         } else {
-          result.password = Error_enum.Customer_Valid;
+          result.password = Error_Customer_enum.Customer_Valid;
           break;
         }
     }
@@ -86,14 +105,21 @@ class Customer extends Proto_Customer implements Proto_Customer_interface {
    * @params data: Input query result data to be validated
    * @returns Validation Status
    */
-  CheckUser_Authentication(data: User_Authentication) {
+  CheckUser_Authentication(data: User_Authentication_Request) {
     const datacheck = data ?? Status.NotResponding;
     switch (datacheck) {
       case Status.NotResponding:
-        return Status.NotResponding;
+        throw Status.NotResponding;
       default:
-        const validate = datacheck.length > 0 ? "Authenticated" : "Unkown";
-        return validate;
+        const validate =
+          datacheck.length > 0
+            ? Error_Customer_enum.Customer_Exist
+            : Error_Customer_enum.Customer_NotExist;
+        const payload = {
+          status: validate,
+          data: data,
+        };
+        return payload;
     }
   }
 }

@@ -2,7 +2,7 @@
 /**
  * Enumeration for API Status
  * @description
- * Enumeration having API Status details
+ * Enumeration having details for API Status
  */
 export enum Status {
   Success = 200,
@@ -22,19 +22,35 @@ export enum Status {
   NotResponding = "Server did not response with any data",
 }
 
+//========EndPoint=========//
+/**
+ * Enumeration for API EndPoint
+ * @description
+ * Enumeration having details for API EndPoint
+ */
+export enum URL_enum {
+  GraphQLEndpoint = "/api/Andromeda",
+}
+
 //================Error================//
 /**
- * Enumeration for API Status
+ * Enumeration for Error Check API Status
  * @description
- * Enumeration having API Status details
+ * Enumeration having details for Error Check API
  */
-export enum Error_enum {
+export enum Error_Customer_enum {
   Customer_UsernameEmpty = "Username cannot be empty",
   Customer_UsernameInvalid = "Enter valid username",
   Customer_PasswordInvalid = "Enter valid password",
   Customer_InvalidEmailAddress = "Invalid Email Address",
   Customer_Valid = "Valid",
+  Customer_Exist = "Valid Customer",
+  Customer_NotExist = "Customer does not Exist",
+  Customer_Email = "Email",
+  Customer_Empty = "Empty",
+  Customer_Length = "Length",
   Customer_PasswordEmpty = "Password cannot be empty",
+  Customer_UnkowntypeforValidation = "Unkown type for Validation",
   Customer_PasswordLength = "Password should be more than 4 characters of length",
 }
 //==============================Interface===================================//
@@ -50,16 +66,27 @@ export interface Proto_Customer_interface {
   Validate_GetCustomerDetails(
     data: Customer_GetCustomerDetails_interface
   ): Customer_GetCustomerDetails_interface;
-  CheckUser_Authentication(data: User_Authentication): string;
+  CheckUser_Authentication(
+    data: User_Authentication_Request
+  ): User_Authentication_Response;
 }
 
 /**
- * Interface - Authentication
+ * Interface - Authentication Request
  * @description
- * Interface for User Authentication
+ * Interface for User Authentication Request
  */
-export interface User_Authentication {
+export interface User_Authentication_Request {
   length: number;
+}
+
+/**
+ * Interface - Authentication Response
+ * @description
+ * Interface for User Authentication Response
+ */
+export interface User_Authentication_Response {
+  status: string;
 }
 
 /**
@@ -93,11 +120,24 @@ export interface GenerateMessage_graphql_input_interface {
 }
 
 /**
+ * Interface - GenerateMessage_graphql response
+ * @description
+ * Interface for GenerateMessage_graphql response
+ */
+export interface GenerateMessage_graphql_response_interface {
+  message: string;
+  statusCode: number;
+  statusMessage: string;
+}
+
+/**
  * Interface - Proto_Utility
  * @description
  * Interface for Proto_Utility
  */
 export interface Proto_Utility_interface {
   Validate_Data(data: string, type: string): boolean | string;
-  GenerateMessage_graphql(data: GenerateMessage_graphql_input_interface): any;
+  GenerateMessage_graphql(
+    data: GenerateMessage_graphql_input_interface
+  ): GenerateMessage_graphql_response_interface;
 }
