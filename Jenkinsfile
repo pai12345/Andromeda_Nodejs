@@ -1,7 +1,11 @@
 pipeline{
-    agent:any
+    agent {
+        docker { 
+            image 'node' 
+            } 
+        }
     stages{
-        stage('Nodejs BUILD'){
+        stage('BUILD'){
           steps{
             sh 'npm i && npm audit'
           }
