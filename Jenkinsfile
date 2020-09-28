@@ -14,8 +14,8 @@ pipeline{
         stage('Cloning Repository'){
           steps{     
             script {
+              Exception caughtException = null
               try{
-                  Exception caughtException = null
                   catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') { 
                     // try { 
                     //     // git credentialsId: 'github-credential', url: 'https://github.com/pai12345/Andromeda_Nodejs.git'  
