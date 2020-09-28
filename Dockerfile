@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json /app/
 
 #Install npm dependencies & audit fix npm dependencies
-RUN npm i && npm audit fix
+RUN npm ci && npm audit fix
 
 #COPY 
 COPY . /app
