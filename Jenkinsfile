@@ -51,7 +51,7 @@ pipeline{
                   // }
             }
             catch (Throwable e) {
-                      error e.message
+                        caughtException = e
                     }
             }
              if (caughtException) {
