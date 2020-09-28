@@ -17,7 +17,7 @@ pipeline{
                   Exception caughtException = null
                   catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') { 
                     try { 
-                      error ("test1")
+                      echo "test1"
                         // git credentialsId: 'github-credential', url: 'https://github.com/pai12345/Andromeda_Nodejs.git'  
                     } catch (Throwable e) {
                         caughtException = e
@@ -50,19 +50,19 @@ pipeline{
     }
     post {
         success {
-          echo "Success Cleaning Workspace"
+          echo "Cleaning Workspace"
           cleanWs()
         }
         failure {
-          echo "Success Cleaning Workspace"
+          echo "Cleaning Workspace"
           cleanWs()
         }
         unstable {
-          echo "Success Cleaning Workspace"
+          echo "Cleaning Workspace"
           cleanWs()
         }
         changed {
-          echo "Success Cleaning Workspace"
+          echo "Cleaning Workspace"
           cleanWs()
         }
     }
