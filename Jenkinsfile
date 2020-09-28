@@ -11,6 +11,7 @@ pipeline{
             sh '''
                   npm i 
                   npm audit
+                  npm prod
                '''
           }
         }
