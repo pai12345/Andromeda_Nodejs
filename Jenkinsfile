@@ -14,20 +14,15 @@ pipeline{
         stage('Cloning Repository'){
           steps{     
             script {
-              Exception caughtException = null
-              try{
+                  Exception caughtException = null
                   catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') { 
-                    // try { 
-                    //     // git credentialsId: 'github-credential', url: 'https://github.com/pai12345/Andromeda_Nodejs.git'  
-                    // } catch (Throwable e) {
-                    //     caughtException = e
-                    // }
-                    echo 'Hallo'
-                  }
-            }
-            catch (Throwable e) {
+                    try { 
+                      error ("test1")
+                        // git credentialsId: 'github-credential', url: 'https://github.com/pai12345/Andromeda_Nodejs.git'  
+                    } catch (Throwable e) {
                         caughtException = e
                     }
+                  }
                   if (caughtException) {
                         error caughtException.message
                     }
@@ -38,26 +33,18 @@ pipeline{
           steps{
             script {
                   Exception caughtException = null
-                  try{
                   catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') { 
-                  // try { 
+                  try { 
+                     error ("test2")
                     sh '''
                        npm ci
                        npm audit fix    
                       '''
-                  // } catch (Throwable e) {
-                  //     error e.message
-                  //   }
-                  // }
-            }
+                  } catch (Throwable e) {
+                      error e.message
+                    }
                   }
-            catch (Throwable e) {
-                        caughtException = e
-                    }
-            // }
-             if (caughtException) {
-                        error caughtException.message
-                    }
+            }
           }
         }
     }
