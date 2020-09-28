@@ -1,9 +1,9 @@
 node_modules/
 src/
 .gitignore
-manifest.yaml
+Jenkinsfile
 README.md
 tsconfig.json
+.DS_Store
 webpack.config.js
 webpack.config.prod.js
-.DS_Store

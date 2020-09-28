@@ -18,7 +18,7 @@ pipeline{
             sh '''
                   npm i 
                   npm audit
-                  npm run prod
+                  npm run pushtoprod
                '''
           }
         }
