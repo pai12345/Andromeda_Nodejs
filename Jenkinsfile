@@ -41,11 +41,12 @@ pipeline{
                       '''
                   } catch (Throwable e) {
                       caughtException = e
+                      error e
                     }                  
                   }
-                   if (caughtException) {
-                        error caughtException.message
-                    }
+                  //  if (caughtException) {
+                  //       error caughtException.message
+                  //   }
             }
           }
         }
