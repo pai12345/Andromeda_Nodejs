@@ -22,6 +22,7 @@ pipeline{
                     // } catch (Throwable e) {
                     //     caughtException = e
                     // }
+                    echo 'Hallo'
                   }
             }
             catch (Throwable e) {
@@ -37,17 +38,25 @@ pipeline{
           steps{
             script {
                   Exception caughtException = null
+                  try{
                   catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') { 
-                  try { 
+                  // try { 
                     sh '''
                        npm ci
                        npm audit fix    
                       '''
-                  } catch (Throwable e) {
+                  // } catch (Throwable e) {
+                  //     error e.message
+                  //   }
+                  // }
+            }
+            catch (Throwable e) {
                       error e.message
                     }
-                  }
             }
+             if (caughtException) {
+                        error caughtException.message
+                    }
           }
         }
     }
