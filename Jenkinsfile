@@ -50,20 +50,20 @@ pipeline{
     }
     post {
         success {
-           echo "Success Cleaning Workspace"
-           cleanWs()
+          echo "Success Cleaning Workspace"
+          cleanWs()
         }
         failure {
-           error("Error Cleaning Workspace")
-           cleanWs()
+          echo "Success Cleaning Workspace"
+          cleanWs()
         }
         unstable {
-           error("Unstable Cleaning Workspace")
-           cleanWs()
+          echo "Success Cleaning Workspace"
+          cleanWs()
         }
         changed {
-           error("Changed Cleaning Workspace")
-           cleanWs()
+          echo "Success Cleaning Workspace"
+          cleanWs()
         }
     }
 }
