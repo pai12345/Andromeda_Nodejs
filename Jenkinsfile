@@ -52,7 +52,7 @@ pipeline{
             cleanWs()
         }
         failure {
-           echo 'Error'
+           error('Error')
            cleanWs()
         }
         always {
