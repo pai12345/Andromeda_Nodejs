@@ -7,6 +7,7 @@ pipeline{
     }
     options {
         timeout(time: 5, unit: 'MINUTES') 
+        skipDefaultCheckout true
     }  
     tools {nodejs "nodejs"}
     stages{
