@@ -35,7 +35,6 @@ pipeline{
                   Exception caughtException = null
                   catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') { 
                   try { 
-                     currentBuild.result = "ABORTED"
                      error("ABORTED")
                     sh '''
                        npm ci
