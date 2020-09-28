@@ -35,7 +35,8 @@ pipeline{
                   Exception caughtException = null
                   catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') { 
                   try { 
-                     error ("test2")
+                     currentBuild.result = "ABORTED"
+                     error("ABORTED")
                     sh '''
                        npm ci
                        npm audit fix    
