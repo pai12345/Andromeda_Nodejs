@@ -49,9 +49,25 @@ pipeline{
         }
     }
     post {
-        always {
-           echo "Cleaning Workspace"
+        success {
+           echo "Success Cleaning Workspace"
            cleanWs()
+        }
+        failure {
+           error("Error Cleaning Workspace")
+           cleanWs()
+        }
+        unstable {
+           error("Unstable Cleaning Workspace")
+           cleanWs()
+        }
+        changed {
+           error("Changed Cleaning Workspace")
+           cleanWs()
+        }
+        always {
+            echo 'Cleaning Workspace'
+            cleanWs()
         }
     }
 }
