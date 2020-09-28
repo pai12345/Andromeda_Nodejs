@@ -8,7 +8,6 @@ pipeline{
     stages{
         stage('BUILD'){
           steps{
-            preBuildCleanup()
             sh '''
                   npm i 
                   npm audit
