@@ -35,7 +35,6 @@ pipeline{
                   Exception caughtException = null
                   catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') { 
                   try { 
-                     error("ABORTED")
                     sh '''
                        npm ci
                        npm audit fix    
@@ -52,19 +51,7 @@ pipeline{
         }
     }
     post {
-        success {
-          echo "Cleaning Workspace"
-          cleanWs()
-        }
-        failure {
-          echo "Cleaning Workspace"
-          cleanWs()
-        }
-        unstable {
-          echo "Cleaning Workspace"
-          cleanWs()
-        }
-        changed {
+        always {
           echo "Cleaning Workspace"
           cleanWs()
         }
