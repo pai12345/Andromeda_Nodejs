@@ -19,9 +19,12 @@ pipeline{
                     try { 
                         // git credentialsId: 'github-credential', url: 'https://github.com/pai12345/Andromeda_Nodejs.git'  
                     } catch (Throwable e) {
-                        error e.message
+                        caughtException = e
                     }
                   }
+                  if (caughtException) {
+                        error caughtException.message
+                    }
             }
           }
         }
