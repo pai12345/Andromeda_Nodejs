@@ -16,7 +16,7 @@ pipeline{
                   Exception caughtException = null
                   catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') { 
                     try { 
-                        git credentialsId: 'github-credential', url: 'https://github.com/pai12345/Andromeda_Nodejs.git'  
+                        // git credentialsId: 'github-credential', url: 'https://github.com/pai12345/Andromeda_Nodejs.git'  
                     } catch (Throwable e) {
                         error e.message
                     }
