@@ -41,9 +41,12 @@ pipeline{
                        npm audit fix    
                       '''
                   } catch (Throwable e) {
-                      error e.message
-                    }
+                      caughtException = e
+                    }                  
                   }
+                   if (caughtException) {
+                        error caughtException.message
+                    }
             }
           }
         }
