@@ -14,14 +14,19 @@ pipeline{
         stage('Cloning Repository'){
           steps{     
             script {
+              try{
                   Exception caughtException = null
                   catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') { 
-                    try { 
-                        // git credentialsId: 'github-credential', url: 'https://github.com/pai12345/Andromeda_Nodejs.git'  
-                    } catch (Throwable e) {
+                    // try { 
+                    //     // git credentialsId: 'github-credential', url: 'https://github.com/pai12345/Andromeda_Nodejs.git'  
+                    // } catch (Throwable e) {
+                    //     caughtException = e
+                    // }
+                  }
+            }
+            catch (Throwable e) {
                         caughtException = e
                     }
-                  }
                   if (caughtException) {
                         error caughtException.message
                     }
@@ -46,16 +51,9 @@ pipeline{
           }
         }
     }
-    post { 
-        success { 
-            echo 'Success'
-            cleanWs()
-        }
-        failure {
-           error('Error')
-           cleanWs()
-        }
+    post {
         always {
+           echo "Cleaning Workspace"
            cleanWs()
         }
     }
