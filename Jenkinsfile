@@ -65,9 +65,5 @@ pipeline{
            error("Changed Cleaning Workspace")
            cleanWs()
         }
-        always {
-            echo 'Cleaning Workspace'
-            cleanWs()
-        }
     }
 }
