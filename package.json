@@ -15,7 +15,8 @@
     "build-prod": "webpack --config webpack.config.prod.js",
     "debug": "npm run clean && tsc && nodemon --inspect ./dist/index.js",
     "dev": "npm run clean && npm run build-dev && npm run start",
-    "prod": "npm run clean && npm run build-prod && npm run start"
+    "prod": "npm run clean && npm run build-prod && npm run start",
+    "pushtoprod": "npm run build-prod && npm run start"
   },
   "keywords": [],
   "author": "Pai",
