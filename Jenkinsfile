@@ -30,7 +30,7 @@ pipeline{
             }
           }
         }
-        stage('BUILD'){
+        stage('Build'){
           steps{
             script {
                   Exception caughtException = null
