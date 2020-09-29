@@ -18,7 +18,7 @@ pipeline{
                   Exception caughtException = null
                   catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') { 
                     try { 
-                      echo "test1"
+                      echo "Cloning Repo"
                         git credentialsId: 'github-credential', url: 'https://github.com/pai12345/Andromeda_Nodejs.git'  
                     } catch (Throwable e) {
                         caughtException = e
