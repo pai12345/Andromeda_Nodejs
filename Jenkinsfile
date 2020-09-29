@@ -37,7 +37,8 @@ pipeline{
                   try { 
                     sh '''
                        npm ci
-                       npm audit fix    
+                       npm audit fix
+                       npm run build-prod    
                       '''
                   } catch (Throwable e) {
                       caughtException = e
