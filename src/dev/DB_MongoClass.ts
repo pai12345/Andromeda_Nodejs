@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Status } from "../utility/utility";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -8,6 +9,7 @@ dotenv.config();
  * Class contains Attributes and Methods for MongDB
  */
 class Mongo {
+  readonly Status = Status;
   /**
    * Function - Connect
    * @description
@@ -20,9 +22,9 @@ class Mongo {
 
       const connect = mongoose.connect(`${process.env.MONGODB_URI}`);
       await Promise.all([connect]);
-      return "Success";
+      return { code: Status.Success, message: Status.SuccessMessage };
     } catch (error) {
-      return `Error in Connection to MongoDB: ${error}`;
+      return { code: Status.ServerError, message: `${error}` };
     }
   }
   /**
@@ -32,7 +34,6 @@ class Mongo {
    */
   Disconnect_DB() {
     mongoose.disconnect();
-    return "Success";
   }
 }
 
