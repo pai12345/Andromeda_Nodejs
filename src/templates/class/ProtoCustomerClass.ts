@@ -3,7 +3,7 @@ import {
   User_Authentication_Response,
   Customer_GetCustomerDetails_interface,
   Proto_Customer_interface,
-} from "../../utility/utility";
+} from "../../utility/Interface";
 
 /**
  * Template - Customers Class Prototype

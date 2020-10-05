@@ -7,7 +7,7 @@ import {
   Error_Customer_enum,
   Proto_Utility_interface,
   GenerateMessage_graphql_input_interface,
-} from "../utility/utility";
+} from "../utility/Interface";
 import pool from "../templates/database/PostgreSQL";
 
 /**

@@ -6,7 +6,7 @@ import {
   Error_Customer_enum,
   Status,
   Proto_Customer_interface,
-} from "../utility/utility";
+} from "../utility/Interface";
 
 /**
  * Class - Customer

@@ -1,7 +1,7 @@
 import {
   Proto_Utility_interface,
   GenerateMessage_graphql_input_interface,
-} from "../../utility/utility";
+} from "../../utility/Interface";
 
 /**
  * Template - Utility Class Prototype

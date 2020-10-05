@@ -5,9 +5,9 @@ import { graphqlHTTP } from "express-graphql";
 import helmet from "helmet";
 
 import { oServe_Utility } from "./dev/UtilityClass";
-import { resolvers } from "./templates/service/resolver";
-import { typeDefs } from "./templates/service/schema";
-import { URL_enum } from "./utility/utility";
+import { resolvers } from "./templates/service/graphql/resolver";
+import { typeDefs } from "./templates/service/graphql/schema";
+import { URL_enum } from "./utility/Interface";
 
 const PORT = process.env.PORT || 8000;
 const app = express();

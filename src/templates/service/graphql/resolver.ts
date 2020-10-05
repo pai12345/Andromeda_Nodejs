@@ -1,9 +1,9 @@
-import { oServe_Customer } from "../../dev/CustomerClass";
-import { oServe_Utility } from "../../dev/UtilityClass";
+import { oServe_Customer } from "../../../dev/CustomerClass";
+import { oServe_Utility } from "../../../dev/UtilityClass";
 import {
   Login_Resolver_interface,
   Error_Customer_enum,
-} from "../../utility/utility";
+} from "../../../utility/Interface";
 
 export const resolvers: any = {
   Login: async (args: Login_Resolver_interface, _req: any) => {

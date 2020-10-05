@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Status } from "../utility/utility";
+import { Status } from "../utility/Interface";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -34,6 +34,26 @@ class Mongo {
    */
   Disconnect_DB() {
     mongoose.disconnect();
+  }
+  /**
+   * Function - Schema
+   * @description
+   * Function to define Schema
+   */
+  Define_Schema(data: any) {
+    const { Schema } = mongoose;
+    const newSchema = new Schema(data);
+    return newSchema;
+  }
+  /**
+   * Function - Model
+   * @description
+   * Function to define Model
+   */
+  Define_Model(schema_name: string, schema_definition: mongoose.Schema<any>) {
+    const { model } = mongoose;
+    const newmodel = model(schema_name, schema_definition);
+    return newmodel;
   }
 }
 
