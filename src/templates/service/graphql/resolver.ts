@@ -11,7 +11,6 @@ export const resolvers: any = {
       const validate_inputdetails = oServe_Customer.Validate_GetCustomerDetails(
         args.input
       );
-
       if (
         validate_inputdetails.username !== Error_Customer_enum.Customer_Valid
       ) {
@@ -27,6 +26,13 @@ export const resolvers: any = {
         const Authentication = oServe_Customer.CheckUser_Authentication(query);
         return Authentication;
       }
+    } catch (error) {
+      return error;
+    }
+  },
+  Logout: async (_args: any, _req: any) => {
+    try {
+      return { status: true };
     } catch (error) {
       return error;
     }

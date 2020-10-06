@@ -105,7 +105,6 @@ class Sub_Utility extends Proto_Utility implements Proto_Utility_interface {
       const query = await client.query(sql, params);
       return query.rows;
     } catch (err) {
-      console.log(err);
       return err;
     } finally {
       client.release();

@@ -3,19 +3,53 @@ import cors from "cors";
 import express, { json } from "express";
 import { graphqlHTTP } from "express-graphql";
 import helmet from "helmet";
-
 import { oServe_Utility } from "./dev/UtilityClass";
 import { resolvers } from "./templates/service/graphql/resolver";
 import { typeDefs } from "./templates/service/graphql/schema";
 import { URL_enum } from "./utility/Interface";
+import session from "express-session";
+import MongoDB_ConnectSession from "connect-mongodb-session";
 
 const PORT = process.env.PORT || 8000;
 const app = express();
+const MongoDB_SessionStore = MongoDB_ConnectSession(session);
+const session_store = new MongoDB_SessionStore(
+  {
+    uri: `${process.env.MONGODB_URI}`,
+    collection: "TestColl",
+    connectionOptions: {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    },
+  },
+  (error) => {
+    return error;
+  }
+);
+
+session_store.on("error", (error) => {
+  return error;
+});
+
+app.set("trust proxy", 1);
 
 app.use(json());
 app.use(cors({ origin: "*" }));
 app.use(helmet());
 app.use(compression());
+
+app.use(
+  session({
+    secret: "session_secret",
+    resave: false,
+    saveUninitialized: false,
+    store: session_store,
+    cookie: {
+      secure: false,
+      httpOnly: true,
+    },
+  })
+);
 
 app.use(
   URL_enum.GraphQLEndpoint,
@@ -34,7 +68,6 @@ const server = app.listen(PORT, () => {
 });
 
 process.on("SIGTERM", () => {
-  console.info("SIGTERM signal received.");
   console.log("Closing http server.");
   server.close(() => {
     console.log("Http server closed.");
