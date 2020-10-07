@@ -31,8 +31,14 @@ export const resolvers: any = {
       return error;
     }
   },
-  Logout: async (_args: any, _req: any) => {
+  Logout: async (_args: any, req: any) => {
     try {
+      req.session.destroy((err: any) => {
+        if (err) {
+          return `Session Deletion Error: ${err}`;
+        }
+        return "User sesssion deleted";
+      });
       return { status: true };
     } catch (error) {
       return error;

@@ -50,7 +50,9 @@ class Sub_Utility extends Proto_Utility implements Proto_Utility_interface {
    */
   GenerateMessage_graphql(data: GenerateMessage_graphql_input_interface) {
     const messageobject = Object.create(null);
-    switch (data.message) {
+    const data_validate = data.message ?? Status.NotResponding;
+
+    switch (data_validate) {
       case Error_Customer_enum.Customer_UsernameEmpty:
         messageobject.message = Error_Customer_enum.Customer_UsernameEmpty;
         messageobject.statusCode = Status.BADREQUEST;
@@ -88,7 +90,7 @@ class Sub_Utility extends Proto_Utility implements Proto_Utility_interface {
         messageobject.statusMessage = Status.BADREQUESTMessage;
         return messageobject;
       default:
-        messageobject.message = Status.NotResponding;
+        messageobject.message = data_validate;
         messageobject.statusCode = Status.ServerError;
         messageobject.statusMessage = Status.ServerErrorMessage;
         return messageobject;

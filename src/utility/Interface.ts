@@ -11,7 +11,7 @@ export enum Status {
   Unavailable = 503,
   BADREQUEST = 400,
   BADREQUESTMessage = "Bad Request",
-  ServerErrorMessage = "Internal Server Error",
+  ServerErrorMessage = "Server Error",
   SuccessMessage = "Success",
   ErrorMessage = "Error",
   WebServerTitle = "Web Server",
@@ -19,7 +19,7 @@ export enum Status {
   PageNotFoundTitlte = "Service Not Found",
   PageNotFoundBody = `404 - Service Not Found`,
   ListeningonPort = "Listening on Port",
-  NotResponding = "Server did not response with any data",
+  NotResponding = "Server did not response with any valid data",
 }
 
 /**
