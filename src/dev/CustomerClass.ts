@@ -18,16 +18,6 @@ class Customer extends Proto_Customer implements Proto_Customer_interface {
     super();
   }
   /**
-   * Function - Generate Query GetCustomer
-   * @description
-   * Function to Generate Query for fetching Customer
-   * @returns SQL Query
-   */
-  Query_GetCustomer() {
-    const query = `SELECT (public.customers_getcustomer_function($1,$2)).*`;
-    return query;
-  }
-  /**
    * Function - Validate Customer Details
    * @description
    * Function to Validate Customer Details

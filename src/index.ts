@@ -16,7 +16,7 @@ const MongoDB_SessionStore = MongoDB_ConnectSession(session);
 const session_store = new MongoDB_SessionStore(
   {
     uri: `${process.env.MONGODB_URI}`,
-    collection: "TestColl",
+    collection: "Session",
     connectionOptions: {
       useNewUrlParser: true,
       useUnifiedTopology: true,

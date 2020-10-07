@@ -22,6 +22,15 @@ export enum Status {
   NotResponding = "Server did not response with any data",
 }
 
+/**
+ * Enumeration for SQL Queries
+ * @description
+ * Enumeration having details for SQL Queries
+ */
+export enum SQLQueryGenerator {
+  GetCustomer_withFilter = `SELECT (public.customers_getcustomer_function($1,$2)).*`,
+}
+
 //========EndPoint=========//
 /**
  * Enumeration for API EndPoint
@@ -62,7 +71,6 @@ export enum Error_Customer_enum {
  * Interface for User Authentication
  */
 export interface Proto_Customer_interface {
-  Query_GetCustomer(username: string, password: string): string;
   Validate_GetCustomerDetails(
     data: Customer_GetCustomerDetails_interface
   ): Customer_GetCustomerDetails_interface;

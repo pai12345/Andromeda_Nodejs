@@ -3,6 +3,7 @@ import { oServe_Utility } from "../../../dev/UtilityClass";
 import {
   Login_Resolver_interface,
   Error_Customer_enum,
+  SQLQueryGenerator,
 } from "../../../utility/Interface";
 
 export const resolvers: any = {
@@ -21,7 +22,7 @@ export const resolvers: any = {
         throw new Error(validate_inputdetails.password);
       } else {
         const { username, password } = args.input;
-        const text = oServe_Customer.Query_GetCustomer();
+        const text = SQLQueryGenerator.GetCustomer_withFilter;
         const query = await oServe_Utility.Query(text, [username, password]);
         const Authentication = oServe_Customer.CheckUser_Authentication(query);
         return Authentication;
