@@ -9,25 +9,30 @@ import { typeDefs } from "./templates/service/graphql/schema";
 import { URL_enum } from "./utility/Interface";
 import session from "express-session";
 import MongoDB_ConnectSession from "connect-mongodb-session";
+import oServe_Mongo from "./dev/DB_MongoClass";
 
+oServe_Mongo.Connect_DB();
 const PORT = process.env.PORT || 8000;
 const app = express();
 const MongoDB_SessionStore = MongoDB_ConnectSession(session);
 const session_store = new MongoDB_SessionStore(
   {
-    uri: `${process.env.MONGODB_URI}`,
-    collection: "Session",
+    uri: `mongodb+srv://admin:admin@cluster-andromeda.ms09l.mongodb.net/Andromeda?retryWrites=true&w=majority`,
+    collection: "Customer",
     connectionOptions: {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     },
   },
   (error) => {
-    return error;
+    if (error) {
+      console.log(`Mongo session error:${error}`);
+    }
   }
 );
 
 session_store.on("error", (error) => {
+  console.log(`Mongo session_store error:${error}`);
   return error;
 });
 
@@ -45,6 +50,7 @@ app.use(
     saveUninitialized: false,
     store: session_store,
     cookie: {
+      maxAge: 300,
       secure: false,
       httpOnly: true,
     },

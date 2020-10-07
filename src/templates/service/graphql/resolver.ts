@@ -7,7 +7,7 @@ import {
 } from "../../../utility/Interface";
 
 export const resolvers: any = {
-  Login: async (args: Login_Resolver_interface, _req: any) => {
+  Login: async (args: Login_Resolver_interface, req: any) => {
     try {
       const validate_inputdetails = oServe_Customer.Validate_GetCustomerDetails(
         args.input
@@ -21,6 +21,7 @@ export const resolvers: any = {
       ) {
         throw new Error(validate_inputdetails.password);
       } else {
+        req.session.isLoggedin = true;
         const { username, password } = args.input;
         const text = SQLQueryGenerator.GetCustomer_withFilter;
         const query = await oServe_Utility.Query(text, [username, password]);
@@ -37,6 +38,7 @@ export const resolvers: any = {
         if (err) {
           return `Session Deletion Error: ${err}`;
         }
+        console.log("User sesssion deleted");
         return "User sesssion deleted";
       });
       return { status: true };

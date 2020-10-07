@@ -22,8 +22,10 @@ class Mongo {
 
       const connect = mongoose.connect(`${process.env.MONGODB_URI}`);
       await Promise.all([connect]);
+      console.log({ code: Status.Success, message: Status.SuccessMessage });
       return { code: Status.Success, message: Status.SuccessMessage };
     } catch (error) {
+      console.log({ code: Status.ServerError, message: `${error}` });
       return { code: Status.ServerError, message: `${error}` };
     }
   }
