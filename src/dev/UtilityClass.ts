@@ -9,6 +9,7 @@ import {
   GenerateMessage_graphql_input_interface,
 } from "../utility/Interface";
 import pool from "../templates/database/PostgreSQL";
+import bcrypt from "bcryptjs";
 
 /**
  * Class - Utility
@@ -112,6 +113,32 @@ class Sub_Utility extends Proto_Utility implements Proto_Utility_interface {
       client.release();
     }
   }
+  /**
+   * Function - CryptPassword
+   * @param passowrd - password
+   * @returns Hashed Password
+   */
+  async CryptPassword(password: string) {
+    try {
+      return bcrypt.hash(password, 1);
+    } catch (error) {
+      return error;
+    }
+  }
+  /**
+   * Function - CompareCryptPassword
+   * @param passowrd - password original
+   * @param hash - password hash
+   * @returns Boolean
+   */
+  async CompareCryptPassword(password: string, hash: string) {
+    try {
+      const compare = await bcrypt.compare(password, hash);
+      return compare;
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 /**
@@ -119,4 +146,5 @@ class Sub_Utility extends Proto_Utility implements Proto_Utility_interface {
  * @description
  * Instance having Attributes and Methods of Uitlity Class .
  */
-export const oServe_Utility = new Sub_Utility();
+const oServe_Utility = new Sub_Utility();
+export default oServe_Utility;

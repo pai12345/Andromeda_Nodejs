@@ -14,6 +14,8 @@ abstract class Proto_Utility implements Proto_Utility_interface {
     data: GenerateMessage_graphql_input_interface
   ): { message: string; statusCode: number; statusMessage: string };
   abstract Query(sql: string, params: string[]): any;
+  abstract CryptPassword(password: string): Promise<any>;
+  abstract CompareCryptPassword(password: string, hash: string): Promise<any>;
 }
 
 export default Proto_Utility;

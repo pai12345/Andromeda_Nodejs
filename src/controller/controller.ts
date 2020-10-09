@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { oServe_Utility } from "../dev/UtilityClass";
+import oServe_Utility from "../dev/UtilityClass";
 // import { client } from "../utility/connection";
 import path from "path";
 

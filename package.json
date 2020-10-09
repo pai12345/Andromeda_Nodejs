@@ -23,6 +23,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
     "connect-mongodb-session": "^2.4.1",
     "cors": "^2.8.5",
@@ -38,6 +39,7 @@
     "validator": "^13.1.17"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/case-sensitive-paths-webpack-plugin": "^2.1.4",
     "@types/compression": "^1.7.0",
     "@types/connect-mongodb-session": "0.0.4",

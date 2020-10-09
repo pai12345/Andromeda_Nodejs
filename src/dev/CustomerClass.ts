@@ -1,5 +1,5 @@
 import Proto_Customer from "../templates/class/ProtoCustomerClass";
-import { oServe_Utility } from "../dev/UtilityClass";
+import oServe_Utility from "../dev/UtilityClass";
 import {
   User_Authentication_Request,
   Customer_GetCustomerDetails_interface,
@@ -119,4 +119,5 @@ class Customer extends Proto_Customer implements Proto_Customer_interface {
  * @description
  * Instance having Attributes and Methods of Customer Class .
  */
-export const oServe_Customer = new Customer();
+const oServe_Customer = new Customer();
+export default oServe_Customer;

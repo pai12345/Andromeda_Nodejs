@@ -19,13 +19,12 @@ class Mongo {
     try {
       mongoose.set("useUnifiedTopology", true);
       mongoose.set("useNewUrlParser", true);
+      mongoose.set("useCreateIndex", true);
 
       const connect = mongoose.connect(`${process.env.MONGODB_URI}`);
       await Promise.all([connect]);
-      console.log({ code: Status.Success, message: Status.SuccessMessage });
       return { code: Status.Success, message: Status.SuccessMessage };
     } catch (error) {
-      console.log({ code: Status.ServerError, message: `${error}` });
       return { code: Status.ServerError, message: `${error}` };
     }
   }
@@ -52,9 +51,13 @@ class Mongo {
    * @description
    * Function to define Model
    */
-  Define_Model(schema_name: string, schema_definition: mongoose.Schema<any>) {
+  Define_Model(
+    schema_name: string,
+    schema_definition: mongoose.Schema<any>,
+    collection: any
+  ) {
     const { model } = mongoose;
-    const newmodel = model(schema_name, schema_definition);
+    const newmodel = model(schema_name, schema_definition, collection);
     return newmodel;
   }
 }

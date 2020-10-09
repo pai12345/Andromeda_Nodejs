@@ -23,6 +23,15 @@ export enum Status {
 }
 
 /**
+ * Enumeration for MongoDB Schema
+ * @description
+ * Enumeration having details for MongoDB Schema
+ */
+export enum MongoSchema_Enum {
+  Customer = "Customer",
+}
+
+/**
  * Enumeration for SQL Queries
  * @description
  * Enumeration having details for SQL Queries

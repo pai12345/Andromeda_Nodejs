@@ -3,7 +3,7 @@ import cors from "cors";
 import express, { json } from "express";
 import { graphqlHTTP } from "express-graphql";
 import helmet from "helmet";
-import { oServe_Utility } from "./dev/UtilityClass";
+import oServe_Utility from "./dev/UtilityClass";
 import { resolvers } from "./templates/service/graphql/resolver";
 import { typeDefs } from "./templates/service/graphql/schema";
 import { URL_enum } from "./utility/Interface";
@@ -17,8 +17,8 @@ const app = express();
 const MongoDB_SessionStore = MongoDB_ConnectSession(session);
 const session_store = new MongoDB_SessionStore(
   {
-    uri: `mongodb+srv://admin:admin@cluster-andromeda.ms09l.mongodb.net/Andromeda?retryWrites=true&w=majority`,
-    collection: "Customer",
+    uri: `${process.env.MONGODB_URI}`,
+    collection: "Session",
     connectionOptions: {
       useNewUrlParser: true,
       useUnifiedTopology: true,
