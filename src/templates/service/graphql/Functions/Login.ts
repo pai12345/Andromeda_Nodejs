@@ -20,24 +20,17 @@ const Login_Func = async (args: Login_Resolver_interface, req: any) => {
       throw new Error(validate_inputdetails.password);
     } else {
       req.session.isLoggedin = true;
-
-      const { username, password } = args.input;
-
-      const execute_password_hashing = oServe_Utility.CryptPassword(password);
-      const execute_openconnection_MongoDB = oServe_Mongo.Connect_DB();
-
-      const [hashed_password, openconnection_MongoDB] = await Promise.all([
-        execute_password_hashing,
-        execute_openconnection_MongoDB,
-      ]);
-
+      const openconnection_MongoDB = await oServe_Mongo.Connect_DB();
       const { code, message } = openconnection_MongoDB;
 
       if (code === 200) {
+        const { username, password } = args.input;
         const customer_Model = generateModel().Customer;
         const getCustomer: any = await customer_Model
           .findOne({ email: username })
-          .select("password")
+          .select(
+            "customerid name title address email contactnumber dateofbirth password"
+          )
           .lean();
         oServe_Mongo.Disconnect_DB();
         const CheckCustomer = oServe_Customer.CheckUser_Authentication(
@@ -45,19 +38,17 @@ const Login_Func = async (args: Login_Resolver_interface, req: any) => {
         );
         const { status } = CheckCustomer;
 
-        if (status === "Valid Customer") {
+        if (status === Error_Customer_enum.Customer_Exist) {
+          const hashed_password = await oServe_Utility.CryptPassword(password);
           const test_password = await oServe_Utility.CompareCryptPassword(
-            getCustomer[0].password,
+            getCustomer.password,
             hashed_password
           );
-          if (test_password) {
-            return Error_Customer_enum.Customer_Exist;
-          } else {
-            return Error_Customer_enum.Customer_PasswordInvalid;
+          if (test_password === false) {
+            CheckCustomer.status = Error_Customer_enum.Customer_PasswordInvalid;
           }
-        } else {
-          return status;
         }
+        return CheckCustomer;
       } else {
         return message;
       }

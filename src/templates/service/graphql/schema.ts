@@ -28,13 +28,13 @@ export const typeDefs = buildASTSchema(gql`
   #Login - Response Interface
   interface LoginResponse_Interface {
     status: String!
-    data: [LoginResponse_data]!
+    data: LoginResponse_data!
   }
 
   #Login - Response Type
   type LoginResponse implements LoginResponse_Interface {
     status: String!
-    data: [LoginResponse_data]!
+    data: LoginResponse_data!
   }
 
   #Login - Response Type: data Interface

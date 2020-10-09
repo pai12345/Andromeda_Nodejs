@@ -97,12 +97,12 @@ class Customer extends Proto_Customer implements Proto_Customer_interface {
    */
   CheckUser_Authentication(data: User_Authentication_Request) {
     const datacheck = data ?? Status.NotResponding;
-    switch (datacheck) {
+    switch (datacheck.password) {
       case Status.NotResponding:
         throw Status.NotResponding;
       default:
         const validate =
-          datacheck.length > 0
+          datacheck.password.length > 0
             ? Error_Customer_enum.Customer_Exist
             : Error_Customer_enum.Customer_NotExist;
         const payload = {

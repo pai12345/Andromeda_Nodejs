@@ -94,7 +94,7 @@ export interface Proto_Customer_interface {
  * Interface for User Authentication Request
  */
 export interface User_Authentication_Request {
-  length: number;
+  password: string;
 }
 
 /**
