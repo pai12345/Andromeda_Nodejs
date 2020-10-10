@@ -1,6 +1,5 @@
-import oServe_Mongo from "../../dev/DB_MongoClass";
-import generateSchema from "../schema/customer";
-// import { MongoSchema_Enum } from "../../utility/Interface";
+import generateSchema from "../../schema/MongoDB/customer";
+import oServe_Mongo from "../../../dev/DB_MongoClass";
 
 const Customer = oServe_Mongo.Define_Model(
   "Customer",

@@ -5,7 +5,7 @@ import {
   Login_Resolver_interface,
   Error_Customer_enum,
 } from "../../../../utility/Interface";
-import generateModel from "../../../model/customer";
+import generateModel from "../../../model/MongoDB/customer";
 
 const Login_Func = async (args: Login_Resolver_interface, req: any) => {
   try {
@@ -19,7 +19,6 @@ const Login_Func = async (args: Login_Resolver_interface, req: any) => {
     ) {
       throw new Error(validate_inputdetails.password);
     } else {
-      req.session.isLoggedin = true;
       const openconnection_MongoDB = await oServe_Mongo.Connect_DB();
       const { code, message } = openconnection_MongoDB;
 
@@ -46,6 +45,15 @@ const Login_Func = async (args: Login_Resolver_interface, req: any) => {
           );
           if (test_password === false) {
             CheckCustomer.status = Error_Customer_enum.Customer_PasswordInvalid;
+            return CheckCustomer;
+          } else {
+            const session_data = {
+              Customer: {
+                email: username,
+                Loggedin: true,
+              },
+            };
+            req.session.data = session_data;
           }
         }
         return CheckCustomer;

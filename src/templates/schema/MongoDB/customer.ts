@@ -1,13 +1,13 @@
-import oServe_Mongo from "../../dev/DB_MongoClass";
+import oServe_Mongo from "../../../dev/DB_MongoClass";
 
 const Customer = oServe_Mongo.Define_Schema({
   customerid: { type: Number, unique: true },
-  name: String,
+  name: { type: String },
   title: { type: String, enum: ["Mr", "Ms", "Mrs"] },
-  address: String,
+  address: { type: String },
   email: { type: String, required: true, unique: true },
-  contactnumber: Number,
-  dateofbirth: String,
+  contactnumber: { type: Number },
+  dateofbirth: { type: Date },
   password: { type: String, unique: true, required: true },
 });
 

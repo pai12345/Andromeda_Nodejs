@@ -9,9 +9,8 @@ import { typeDefs } from "./templates/service/graphql/schema";
 import { URL_enum } from "./utility/Interface";
 import session from "express-session";
 import MongoDB_ConnectSession from "connect-mongodb-session";
-import oServe_Mongo from "./dev/DB_MongoClass";
+import route_validate from "./middleware/route";
 
-oServe_Mongo.Connect_DB();
 const PORT = process.env.PORT || 8000;
 const app = express();
 const MongoDB_SessionStore = MongoDB_ConnectSession(session);
@@ -68,6 +67,8 @@ app.use(
     },
   })
 );
+
+app.use(route_validate);
 
 const server = app.listen(PORT, () => {
   console.log(`${oServe_Utility.Status.ListeningonPort}: ${PORT}`);
