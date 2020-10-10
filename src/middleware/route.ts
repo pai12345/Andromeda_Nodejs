@@ -1,4 +1,5 @@
 import express from "express";
+import { Status } from "../utility/Interface";
 const app = express();
 
 /**
@@ -6,9 +7,9 @@ const app = express();
  * @description
  * Middleware to validate routes
  */
-const route_validate = app.use(async (_req, res, next) => {
+const route_middleware = app.use(async (_req, res, next) => {
   try {
-    res.status(404).send("Service Not Found");
+    res.status(Status.NotFound).send(Status.PageNotFoundTitlte);
     next();
   } catch (error) {
     res.status(error.esponse.status).send(error);
@@ -16,4 +17,4 @@ const route_validate = app.use(async (_req, res, next) => {
   }
 });
 
-export default route_validate;
+export default route_middleware;

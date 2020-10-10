@@ -1,15 +1,12 @@
 import compression from "compression";
 import cors from "cors";
 import express, { json } from "express";
-import { graphqlHTTP } from "express-graphql";
 import helmet from "helmet";
 import oServe_Utility from "./dev/UtilityClass";
-import { resolvers } from "./templates/service/graphql/resolver";
-import { typeDefs } from "./templates/service/graphql/schema";
-import { URL_enum } from "./utility/Interface";
 import session from "express-session";
 import MongoDB_ConnectSession from "connect-mongodb-session";
-import route_validate from "./middleware/route";
+import route_middleware from "./middleware/route";
+import grpahql_middleware from "./middleware/graphql";
 
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -56,19 +53,8 @@ app.use(
   })
 );
 
-app.use(
-  URL_enum.GraphQLEndpoint,
-  graphqlHTTP({
-    schema: typeDefs,
-    rootValue: resolvers,
-    graphiql: true,
-    customFormatErrorFn: (error) => {
-      return oServe_Utility.GenerateMessage_graphql(error);
-    },
-  })
-);
-
-app.use(route_validate);
+app.use(grpahql_middleware);
+app.use(route_middleware);
 
 const server = app.listen(PORT, () => {
   console.log(`${oServe_Utility.Status.ListeningonPort}: ${PORT}`);
