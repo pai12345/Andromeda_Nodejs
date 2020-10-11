@@ -11,6 +11,7 @@ import grpahql_middleware from "./middleware/graphql";
 const PORT = process.env.PORT || 8000;
 const app = express();
 const MongoDB_SessionStore = MongoDB_ConnectSession(session);
+
 const session_store = new MongoDB_SessionStore(
   {
     uri: `${process.env.MONGODB_URI}`,
@@ -41,12 +42,12 @@ app.use(compression());
 
 app.use(
   session({
-    secret: "session_secret",
+    secret: oServe_Utility.GenerateSecretKey(),
     resave: false,
     saveUninitialized: false,
     store: session_store,
     cookie: {
-      maxAge: 300,
+      maxAge: 900,
       secure: false,
       httpOnly: true,
     },

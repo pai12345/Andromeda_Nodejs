@@ -51,6 +51,8 @@ const Login_Func = async (args: Login_Resolver_interface, req: any) => {
               Customer: {
                 email: username,
                 Loggedin: true,
+                token: oServe_Utility.GenerateCSRFToken().token,
+                secret: oServe_Utility.GenerateCSRFToken().secret,
               },
             };
             req.session.data = session_data;

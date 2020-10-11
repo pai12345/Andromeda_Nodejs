@@ -10,6 +10,7 @@ import {
 } from "../utility/Interface";
 import pool from "../templates/database/PostgreSQL";
 import bcrypt from "bcryptjs";
+import Tokens from "csrf";
 
 /**
  * Class - Utility
@@ -138,6 +139,25 @@ class Sub_Utility extends Proto_Utility implements Proto_Utility_interface {
     } catch (error) {
       return error;
     }
+  }
+  /**
+   * Function - Generate Secret
+   * @description
+   * Function to generate Secrets
+   */
+  GenerateSecretKey() {
+    return Math.random().toString(36);
+  }
+  /**
+   * Function - Generate CSRF
+   * @description
+   * Function generate CSRF Token
+   */
+  GenerateCSRFToken() {
+    const csrf = new Tokens();
+    const secret = csrf.secretSync();
+    const token = csrf.create(secret);
+    return { token: token, secret: secret };
   }
 }
 
