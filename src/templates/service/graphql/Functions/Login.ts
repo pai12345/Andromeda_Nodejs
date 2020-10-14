@@ -28,7 +28,7 @@ const Login_Func = async (args: Login_Resolver_interface, req: any) => {
         const getCustomer: any = await customer_Model
           .findOne({ email: username })
           .select(
-            "customerid name title address email contactnumber dateofbirth password"
+            "_id customerid name title address email contactnumber dateofbirth password"
           )
           .lean();
         oServe_Mongo.Disconnect_DB();
@@ -51,8 +51,10 @@ const Login_Func = async (args: Login_Resolver_interface, req: any) => {
               Customer: {
                 email: username,
                 Loggedin: true,
-                token: oServe_Utility.GenerateCSRFToken().token,
-                secret: oServe_Utility.GenerateCSRFToken().secret,
+                CSRF: {
+                  token: oServe_Utility.GenerateCSRFToken().token,
+                  secret: oServe_Utility.GenerateCSRFToken().secret,
+                },
               },
             };
             req.session.data = session_data;

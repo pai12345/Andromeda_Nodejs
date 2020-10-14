@@ -34,7 +34,6 @@ session_store.on("error", (error) => {
 });
 
 app.set("trust proxy", 1);
-
 app.use(json());
 app.use(cors({ origin: "*" }));
 app.use(helmet());
