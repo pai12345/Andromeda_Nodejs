@@ -36,6 +36,11 @@ const Login_Func = async (args: Login_Resolver_interface, req: any) => {
           getCustomer
         );
         const { status } = CheckCustomer;
+        const result = {
+          token_csrf: "",
+          token_jwt: "",
+          ...CheckCustomer,
+        };
 
         if (status === Error_Customer_enum.Customer_Exist) {
           const hashed_password = await oServe_Utility.CryptPassword(password);
@@ -44,23 +49,32 @@ const Login_Func = async (args: Login_Resolver_interface, req: any) => {
             hashed_password
           );
           if (test_password === false) {
-            CheckCustomer.status = Error_Customer_enum.Customer_PasswordInvalid;
-            return CheckCustomer;
+            result.status = Error_Customer_enum.Customer_PasswordInvalid;
           } else {
+            const token_csrf = oServe_Utility.GenerateCSRFToken().token;
+            const token_jwt = oServe_Utility.GenerateJWT().token;
+
             const session_data = {
               Customer: {
                 email: username,
                 Loggedin: true,
                 CSRF: {
-                  token: oServe_Utility.GenerateCSRFToken().token,
+                  token: token_csrf,
                   secret: oServe_Utility.GenerateCSRFToken().secret,
+                },
+                JWT: {
+                  token: token_jwt,
+                  secret: oServe_Utility.GenerateJWT().secret,
                 },
               },
             };
+
+            result.token_csrf = token_csrf;
+            result.token_jwt = token_jwt;
             req.session.data = session_data;
           }
         }
-        return CheckCustomer;
+        return result;
       } else {
         return message;
       }

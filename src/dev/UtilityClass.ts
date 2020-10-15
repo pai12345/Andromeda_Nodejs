@@ -11,6 +11,7 @@ import {
 import pool from "../templates/database/PostgreSQL";
 import bcrypt from "bcryptjs";
 import Tokens from "csrf";
+import jwt from "jsonwebtoken";
 
 /**
  * Class - Utility
@@ -157,6 +158,16 @@ class Sub_Utility extends Proto_Utility implements Proto_Utility_interface {
     const csrf = new Tokens();
     const secret = csrf.secretSync();
     const token = csrf.create(secret);
+    return { token: token, secret: secret };
+  }
+  /**
+   * Function - Generate JWT
+   * @description
+   * Function generate JWT Token
+   */
+  GenerateJWT() {
+    const secret = Math.random();
+    const token = jwt.sign({ code: Math.random().toString(36) }, `${secret}`);
     return { token: token, secret: secret };
   }
 }

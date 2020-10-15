@@ -105,11 +105,7 @@ class Customer extends Proto_Customer implements Proto_Customer_interface {
           datacheck.password.length > 0
             ? Error_Customer_enum.Customer_Exist
             : Error_Customer_enum.Customer_NotExist;
-        const payload = {
-          status: validate,
-          data: data,
-        };
-        return payload;
+        return { status: validate, data: data };
     }
   }
 }
