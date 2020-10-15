@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import { Status } from "../utility/Interface";
-import dotenv from "dotenv";
-dotenv.config();
+import generateEnv from "../config/config";
 
 /**
  * Class - Mongo
@@ -17,11 +16,13 @@ class Mongo {
    */
   async Connect_DB() {
     try {
+      const MONGODB_URI = generateEnv().MongoDB.MONGODB_URI;
+
       mongoose.set("useUnifiedTopology", true);
       mongoose.set("useNewUrlParser", true);
       mongoose.set("useCreateIndex", true);
 
-      const connect = mongoose.connect(`${process.env.MONGODB_URI}`);
+      const connect = mongoose.connect(`${MONGODB_URI}`);
       await Promise.all([connect]);
       return { code: Status.Success, message: Status.SuccessMessage };
     } catch (error) {

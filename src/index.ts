@@ -7,14 +7,16 @@ import session from "express-session";
 import MongoDB_ConnectSession from "connect-mongodb-session";
 import route_middleware from "./middleware/route";
 import grpahql_middleware from "./middleware/graphql";
+import generateEnv from "./config/config";
 
-const PORT = process.env.PORT || 8000;
+const PORT = generateEnv().PORT;
+const MONGODB_URI = generateEnv().MongoDB.MONGODB_URI;
 const app = express();
 const MongoDB_SessionStore = MongoDB_ConnectSession(session);
 
 const session_store = new MongoDB_SessionStore(
   {
-    uri: `${process.env.MONGODB_URI}`,
+    uri: `${MONGODB_URI}`,
     collection: "Session",
     connectionOptions: {
       useNewUrlParser: true,
