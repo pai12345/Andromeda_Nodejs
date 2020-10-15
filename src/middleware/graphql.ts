@@ -14,11 +14,6 @@ const app = express();
  */
 const grpahql_middleware = app.use(
   URL_enum.GraphQLEndpoint,
-  (req, res, next) => {
-    console.log(req);
-    console.log(res);
-    return next();
-  },
   graphqlHTTP({
     schema: typeDefs,
     rootValue: resolvers,

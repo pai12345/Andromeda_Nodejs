@@ -1,5 +1,6 @@
 import express from "express";
 import { Status } from "../utility/Interface";
+
 const app = express();
 
 /**
@@ -7,7 +8,7 @@ const app = express();
  * @description
  * Middleware to validate routes
  */
-const route_middleware = app.use(async (_req, res, next) => {
+export const route_middleware = app.use(async (_req, res, next) => {
   try {
     res.status(Status.NotFound).send(Status.PageNotFoundTitlte);
     next();

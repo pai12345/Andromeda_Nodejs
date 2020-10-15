@@ -28,16 +28,12 @@ export const typeDefs = buildASTSchema(gql`
   #Login - Response Interface
   interface LoginResponse_Interface {
     status: String!
-    token_csrf: String!
-    token_jwt: String!
     data: LoginResponse_data!
   }
 
   #Login - Response Type
   type LoginResponse implements LoginResponse_Interface {
     status: String!
-    token_csrf: String!
-    token_jwt: String!
     data: LoginResponse_data!
   }
 

@@ -6,6 +6,7 @@ import oServe_Utility from "./dev/UtilityClass";
 import session from "express-session";
 import MongoDB_ConnectSession from "connect-mongodb-session";
 import route_middleware from "./middleware/route";
+import router_preset from "./middleware/route_test";
 import grpahql_middleware from "./middleware/graphql";
 import generateEnv from "./config/config";
 import { Status } from "./utility/Interface";
@@ -13,6 +14,10 @@ import { Status } from "./utility/Interface";
 const PORT = generateEnv().PORT;
 const MONGODB_URI = generateEnv().MongoDB.MONGODB_URI;
 const app = express();
+const cors_option = {
+  origin: "*",
+  exposedHeaders: ["x-auth-token", "x-csrf-token"],
+};
 const MongoDB_SessionStore = MongoDB_ConnectSession(session);
 const session_store = new MongoDB_SessionStore(
   {
@@ -37,7 +42,7 @@ session_store.on("error", (error) => {
 
 app.set("trust proxy", 1);
 app.use(json());
-app.use(cors({ origin: "*" }));
+app.use(cors(cors_option));
 app.use(helmet());
 app.use(compression());
 
@@ -55,6 +60,7 @@ app.use(
   })
 );
 
+app.use(router_preset);
 app.use(grpahql_middleware);
 app.use(route_middleware);
 
