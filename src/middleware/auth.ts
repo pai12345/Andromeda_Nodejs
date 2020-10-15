@@ -6,9 +6,9 @@ const app = express();
 /**
  * Middleware - Preflight Check
  * @description
- * Middleware for Preflight request/response
+ * Middleware for request/response Preflight
  */
-export const router_preset = app.use(async (req, res, next) => {
+export const auth_middleware = app.use(async (req, res, next) => {
   try {
     console.log(req);
     res.header("x-auth-token", oServe_Utility.GenerateJWT().token);
@@ -21,4 +21,4 @@ export const router_preset = app.use(async (req, res, next) => {
   }
 });
 
-export default router_preset;
+export default auth_middleware;

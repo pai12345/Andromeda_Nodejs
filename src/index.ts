@@ -1,15 +1,15 @@
-import compression from "compression";
-import cors from "cors";
 import express, { json } from "express";
-import helmet from "helmet";
-import oServe_Utility from "./dev/UtilityClass";
 import session from "express-session";
 import MongoDB_ConnectSession from "connect-mongodb-session";
-import route_middleware from "./middleware/route";
-import router_preset from "./middleware/route_test";
-import grpahql_middleware from "./middleware/graphql";
+import compression from "compression";
+import cors from "cors";
+import helmet from "helmet";
 import generateEnv from "./config/config";
+import auth_middleware from "./middleware/auth";
+import grpahql_middleware from "./middleware/graphql";
+import route_middleware from "./middleware/route";
 import { Status } from "./utility/Interface";
+import oServe_Utility from "./dev/UtilityClass";
 
 const PORT = generateEnv().PORT;
 const MONGODB_URI = generateEnv().MongoDB.MONGODB_URI;
@@ -53,14 +53,14 @@ app.use(
     saveUninitialized: false,
     store: session_store,
     cookie: {
-      maxAge: 900,
+      maxAge: 180000,
       secure: false,
       httpOnly: true,
     },
   })
 );
 
-app.use(router_preset);
+app.use(auth_middleware);
 app.use(grpahql_middleware);
 app.use(route_middleware);
 
