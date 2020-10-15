@@ -8,12 +8,12 @@ import MongoDB_ConnectSession from "connect-mongodb-session";
 import route_middleware from "./middleware/route";
 import grpahql_middleware from "./middleware/graphql";
 import generateEnv from "./config/config";
+import { Status } from "./utility/Interface";
 
 const PORT = generateEnv().PORT;
 const MONGODB_URI = generateEnv().MongoDB.MONGODB_URI;
 const app = express();
 const MongoDB_SessionStore = MongoDB_ConnectSession(session);
-
 const session_store = new MongoDB_SessionStore(
   {
     uri: `${MONGODB_URI}`,
@@ -25,13 +25,13 @@ const session_store = new MongoDB_SessionStore(
   },
   (error) => {
     if (error) {
-      console.log(`Mongo session error:${error}`);
+      console.log(`${Status.MongoDB_session_error}:${error}`);
     }
   }
 );
 
 session_store.on("error", (error) => {
-  console.log(`Mongo session_store error:${error}`);
+  console.log(`${Status.MongoDB_session_error}:${error}`);
   return error;
 });
 
@@ -59,13 +59,13 @@ app.use(grpahql_middleware);
 app.use(route_middleware);
 
 const server = app.listen(PORT, () => {
-  console.log(`${oServe_Utility.Status.ListeningonPort}: ${PORT}`);
+  console.log(`${Status.ListeningonPort}: ${PORT}`);
 });
 
 process.on("SIGTERM", () => {
-  console.log("Closing http server.");
+  console.log(Status.Closing_http_server);
   server.close(() => {
-    console.log("Http server closed.");
+    console.log(Status.Http_server_closed);
     process.exit(0);
   });
   process.exit(0);

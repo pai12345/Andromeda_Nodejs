@@ -20,6 +20,9 @@ export enum Status {
   PageNotFoundBody = `404 - Service Not Found`,
   ListeningonPort = "Listening on Port",
   NotResponding = "Server did not response with any valid data",
+  MongoDB_session_error = "Mongo session error",
+  Closing_http_server = "Closing http server",
+  Http_server_closed = "Http server closed",
 }
 
 /**
