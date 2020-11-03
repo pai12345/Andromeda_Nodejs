@@ -1,5 +1,5 @@
 import { graphqlHTTP } from "express-graphql";
-import { resolvers } from "../templates/service/graphql/resolver";
+import resolvers from "../templates/service/graphql/resolver";
 import { typeDefs } from "../templates/service/graphql/schema";
 import { URL_enum } from "../utility/Interface";
 import oServe_Utility from "../dev/UtilityClass";

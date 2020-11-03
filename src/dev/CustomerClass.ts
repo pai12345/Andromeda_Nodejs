@@ -1,10 +1,8 @@
 import Proto_Customer from "../templates/class/ProtoCustomerClass";
 import oServe_Utility from "../dev/UtilityClass";
 import {
-  User_Authentication_Request,
   Customer_GetCustomerDetails_interface,
   Error_Customer_enum,
-  Status,
   Proto_Customer_interface,
 } from "../utility/Interface";
 
@@ -87,26 +85,6 @@ class Customer extends Proto_Customer implements Proto_Customer_interface {
         }
     }
     return result;
-  }
-  /**
-   * Function - Check Customer from Postgresql
-   * @description
-   * Function to Check Customer from Postgresql
-   * @params data: Input query result data to be validated
-   * @returns Validation Status
-   */
-  CheckUser_Authentication(data: User_Authentication_Request) {
-    const datacheck = data ?? Status.NotResponding;
-    switch (datacheck.password) {
-      case Status.NotResponding:
-        throw Status.NotResponding;
-      default:
-        const validate =
-          datacheck.password.length > 0
-            ? Error_Customer_enum.Customer_Exist
-            : Error_Customer_enum.Customer_NotExist;
-        return { status: validate, data: data };
-    }
   }
 }
 

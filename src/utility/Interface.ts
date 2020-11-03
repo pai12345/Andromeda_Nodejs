@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 //=============================Enum================================//
 /**
  * Enumeration for API Status
@@ -86,27 +88,6 @@ export interface Proto_Customer_interface {
   Validate_GetCustomerDetails(
     data: Customer_GetCustomerDetails_interface
   ): Customer_GetCustomerDetails_interface;
-  CheckUser_Authentication(
-    data: User_Authentication_Request
-  ): User_Authentication_Response;
-}
-
-/**
- * Interface - Authentication Request
- * @description
- * Interface for User Authentication Request
- */
-export interface User_Authentication_Request {
-  password: string;
-}
-
-/**
- * Interface - Authentication Response
- * @description
- * Interface for User Authentication Response
- */
-export interface User_Authentication_Response {
-  status: string;
 }
 
 /**
@@ -160,4 +141,64 @@ export interface Proto_Utility_interface {
   GenerateMessage_graphql(
     data: GenerateMessage_graphql_input_interface
   ): GenerateMessage_graphql_response_interface;
+}
+
+/**
+ * Interface - GenerateCSRFToken Response
+ * @description
+ * Interface for GenerateCSRFToken Response
+ */
+export interface GenerateCSRFToken_Response_Interface {
+  token: string;
+  secret: string;
+}
+
+/**
+ * Interface - GenerateJWT Response
+ * @description
+ * Interface for GeneratGenerateJWTeCSRFToken Response
+ */
+export interface GenerateJWT_Response_Interface {
+  token: string;
+  secret: number;
+}
+
+/**
+ * Interface - ResultObj Response
+ * @description
+ * Interface for ResultObj Response
+ */
+export interface ResultObj_Response_Interface {
+  status: number;
+  message: string;
+  data: any;
+}
+
+/**
+ * Interface - Connect_DB Response
+ * @description
+ * Interface for Connect_DB Response
+ */
+export interface Connect_DB_Response_Interface {
+  code: Status;
+  message: Status | string;
+}
+
+/**
+ * Interface - Proto_MongoDB Class
+ * @description
+ * Interface for Proto_MongoDB Class
+ */
+export interface Proto_MongoDB_Interface {
+  Connect_DB(): Promise<{
+    code: Status;
+    message: Status | string;
+  }>;
+  Disconnect_DB(): void;
+  Define_Schema(data: any): mongoose.Schema<any>;
+  Define_Model(
+    schema_name: string,
+    schema_definition: mongoose.Schema<any>,
+    collection: any
+  ): mongoose.Model<mongoose.Document, {}>;
 }

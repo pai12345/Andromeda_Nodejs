@@ -4,6 +4,7 @@ import oServe_Mongo from "../../../../dev/DB_MongoClass";
 import {
   Login_Resolver_interface,
   Error_Customer_enum,
+  Status,
 } from "../../../../utility/Interface";
 import generateModel from "../../../model/MongoDB/customer";
 
@@ -12,12 +13,23 @@ const Login_Func = async (args: Login_Resolver_interface, req: any) => {
     const validate_inputdetails = oServe_Customer.Validate_GetCustomerDetails(
       args.input
     );
+
     if (validate_inputdetails.username !== Error_Customer_enum.Customer_Valid) {
-      throw new Error(validate_inputdetails.username);
+      const error = oServe_Utility.ResultObj(
+        Status.BADREQUEST,
+        validate_inputdetails.username,
+        args.input.username
+      );
+      return error;
     } else if (
       validate_inputdetails.password !== Error_Customer_enum.Customer_Valid
     ) {
-      throw new Error(validate_inputdetails.password);
+      const error = oServe_Utility.ResultObj(
+        Status.BADREQUEST,
+        validate_inputdetails.password,
+        args.input.password
+      );
+      return error;
     } else {
       const openconnection_MongoDB = await oServe_Mongo.Connect_DB();
       const { code, message } = openconnection_MongoDB;
@@ -32,20 +44,21 @@ const Login_Func = async (args: Login_Resolver_interface, req: any) => {
           )
           .lean();
         oServe_Mongo.Disconnect_DB();
-        const CheckCustomer = oServe_Customer.CheckUser_Authentication(
-          getCustomer
-        );
-        const { status } = CheckCustomer;
-        const result = { ...CheckCustomer };
+        const check = oServe_Utility.NullishCoalesce(getCustomer);
 
-        if (status === Error_Customer_enum.Customer_Exist) {
-          const hashed_password = await oServe_Utility.CryptPassword(password);
+        if (check !== Status.NotResponding) {
           const test_password = await oServe_Utility.CompareCryptPassword(
-            getCustomer.password,
-            hashed_password
+            password,
+            getCustomer.password
           );
+
           if (test_password === false) {
-            result.status = Error_Customer_enum.Customer_PasswordInvalid;
+            const error = oServe_Utility.ResultObj(
+              Status.BADREQUEST,
+              Error_Customer_enum.Customer_PasswordInvalid,
+              null
+            );
+            return error;
           } else {
             const session_data = {
               Customer: {
@@ -62,16 +75,29 @@ const Login_Func = async (args: Login_Resolver_interface, req: any) => {
               },
             };
             req.session.data = session_data;
+            const result = oServe_Utility.ResultObj(
+              Status.Success,
+              Status.SuccessMessage,
+              getCustomer
+            );
+            return result;
           }
+        } else {
+          const error = oServe_Utility.ResultObj(
+            Status.NotFound,
+            Error_Customer_enum.Customer_NotExist,
+            null
+          );
+          return error;
         }
-        return result;
       } else {
-        return message;
+        const error = oServe_Utility.ResultObj(
+          Status.ServerError,
+          Status.ServerErrorMessage,
+          message
+        );
+        return error;
       }
-      // const text = SQLQueryGenerator.GetCustomer_withFilter;
-      // const query = await oServe_Utility.Query(text, [username, password]);
-      // const Authentication = oServe_Customer.CheckUser_Authentication(query);
-      // return Authentication;
     }
   } catch (error) {
     return error;

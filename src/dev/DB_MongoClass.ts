@@ -1,13 +1,14 @@
 import mongoose from "mongoose";
-import { Status } from "../utility/Interface";
+import { Status, Proto_MongoDB_Interface } from "../utility/Interface";
 import generateEnv from "../config/config";
+import Proto_MongoDB from "../templates/class/ProtoDB_MongoClass";
 
 /**
- * Class - Mongo
+ * Class - MongoDB
  * @description
- * Class contains Attributes and Methods for MongDB
+ * Class contains Attributes and Methods for MongoDB Class
  */
-class Mongo {
+class Mongo extends Proto_MongoDB implements Proto_MongoDB_Interface {
   readonly Status = Status;
   /**
    * Function - Connect

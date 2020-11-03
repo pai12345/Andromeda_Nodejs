@@ -1,5 +1,6 @@
 import generateEnv from "./config/config";
 import express, { json } from "express";
+// import "express-async-errors";
 import cors from "cors";
 import helmet from "helmet";
 import compression from "compression";

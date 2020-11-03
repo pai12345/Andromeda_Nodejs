@@ -170,6 +170,23 @@ class Sub_Utility extends Proto_Utility implements Proto_Utility_interface {
     const token = jwt.sign({ code: Math.random().toString(36) }, `${secret}`);
     return { token: token, secret: secret };
   }
+  ResultObj(status: number, message: string, data: any) {
+    const result = {
+      status: status,
+      message: message,
+      data: data,
+    };
+    return result;
+  }
+  /**
+   * Function for Nullish Coalescing
+   * @description
+   * Function to check if value is null | undefined
+   */
+  NullishCoalesce(data: any) {
+    const validate = data ?? Status.NotResponding;
+    return validate;
+  }
 }
 
 /**

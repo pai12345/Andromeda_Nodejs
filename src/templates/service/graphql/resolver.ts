@@ -2,15 +2,25 @@ import { Login_Resolver_interface } from "../../../utility/Interface";
 import Login_Func from "./Functions/Login";
 import { RequestHandler } from "express";
 
-export const resolvers = {
+/**
+ * Function - Resolver function
+ * @description
+ * Function having details for Resolver function.
+ */
+const resolvers = {
+  /**
+   * Function - Login
+   * @description
+   * Function having details for Login function.
+   * @param args: arguments for Login Function
+   * @param req: request handler function for Login
+   * @return Customer Details
+   */
   Login: async (args: Login_Resolver_interface, req: RequestHandler) => {
-    try {
-      const Authenticate = await Login_Func(args, req);
-      return Authenticate;
-    } catch (error) {
-      return error;
-    }
+    const Authenticate = await Login_Func(args, req);
+    return Authenticate;
   },
+
   Logout: async (_args: any, req: any) => {
     try {
       req.session.destroy((err: any) => {
@@ -26,3 +36,5 @@ export const resolvers = {
     }
   },
 };
+
+export default resolvers;
