@@ -1,14 +1,13 @@
-import express from "express";
 import oServe_Utility from "../dev/UtilityClass";
-
-const app = express();
+import { RequestHandler } from "express";
 
 /**
  * Middleware - Preflight Check
  * @description
  * Middleware for request/response Preflight
  */
-export const auth_middleware = app.use(async (req, res, next) => {
+
+const auth_middleware: RequestHandler = async (req, res, next) => {
   try {
     console.log(req);
     res.header("x-auth-token", oServe_Utility.GenerateJWT().token);
@@ -19,6 +18,6 @@ export const auth_middleware = app.use(async (req, res, next) => {
     res.status(error.esponse.status).send(error);
     next();
   }
-});
+};
 
 export default auth_middleware;
