@@ -12,12 +12,12 @@ abstract class Proto_MongoDB implements Proto_MongoDB_Interface {
     message: Status | string;
   }>;
   abstract Disconnect_DB(): void;
-  abstract Define_Schema(data: any): mongoose.Schema<any>;
+  abstract Define_Schema(data: any): mongoose.Schema;
   abstract Define_Model(
     schema_name: string,
-    schema_definition: mongoose.Schema<any>,
+    schema_definition: mongoose.Schema,
     collection: any
-  ): mongoose.Model<mongoose.Document, {}>;
+  ): mongoose.Model<mongoose.Document>;
 }
 
 export default Proto_MongoDB;

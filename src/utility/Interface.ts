@@ -195,10 +195,10 @@ export interface Proto_MongoDB_Interface {
     message: Status | string;
   }>;
   Disconnect_DB(): void;
-  Define_Schema(data: any): mongoose.Schema<any>;
+  Define_Schema(data: any): mongoose.Schema;
   Define_Model(
     schema_name: string,
-    schema_definition: mongoose.Schema<any>,
+    schema_definition: mongoose.Schema,
     collection: any
-  ): mongoose.Model<mongoose.Document, {}>;
+  ): mongoose.Model<mongoose.Document>;
 }

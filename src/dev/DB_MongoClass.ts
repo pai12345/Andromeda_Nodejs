@@ -55,7 +55,7 @@ class Mongo extends Proto_MongoDB implements Proto_MongoDB_Interface {
    */
   Define_Model(
     schema_name: string,
-    schema_definition: mongoose.Schema<any>,
+    schema_definition: mongoose.Schema,
     collection: any
   ) {
     const { model } = mongoose;

@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json /app/
 
 #Install npm dependencies & audit fix npm dependencies
-RUN npm ci && npm audit fix
+RUN npm ci --production && npm audit fix
 
 #COPY 
 COPY . /app
@@ -17,4 +17,4 @@ COPY . /app
 CMD npm start
 
 #Expose Port
-EXPOSE 5000
+EXPOSE 8000
