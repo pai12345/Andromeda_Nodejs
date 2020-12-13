@@ -2,13 +2,13 @@
 /node_modules
 
 # build
-#/dist
+/dist
 
 # types & source maps
 **.d.ts
 **.d.ts.map
 **.map
-**.js
+// **.js
 **.js.map
 
 #misc
