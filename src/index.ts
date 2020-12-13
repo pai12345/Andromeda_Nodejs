@@ -12,7 +12,7 @@ import { Status } from "./utility/Interface";
 const PORT = generateEnv().PORT;
 const app = express();
 const cors_option = {
-  origin: ["http://localhost:3000"],
+  origin: "*",
   exposedHeaders: ["x-auth-token", "x-csrf-token"],
   credentials: true,
 };
