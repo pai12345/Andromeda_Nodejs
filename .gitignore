@@ -8,7 +8,7 @@
 **.d.ts
 **.d.ts.map
 **.map
-// **.js
+#**.js
 **.js.map
 
 #misc
