@@ -1,6 +1,7 @@
 node_modules
 src
 .gitignore
+Dockerfile
 Jenkinsfile
 README.md
 tsconfig.json

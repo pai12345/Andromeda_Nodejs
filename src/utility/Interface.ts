@@ -25,6 +25,7 @@ export enum Status {
   MongoDB_session_error = "Mongo session error",
   Closing_http_server = "Closing http server",
   Http_server_closed = "Http server closed",
+  WelcomeMessage = "Andromeda GraphQL Server",
 }
 
 /**
