@@ -11,7 +11,7 @@ const PostgreSQL = {
   PGPORT: process.env.PGPORT,
 };
 const MongoDB = {
-  MONGODB_URI: process.env.MONGODB_URI,
+  MONGODB_URI: `${process.env.TYPE}+${process.env.TYPEADDITION}://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.HOST}/${process.env.DATABASE}?retryWrites=${process.env.RETRYWRITES}&w=${process.env.WRITECONCERN}`,
 };
 
 const generateEnv = () => {
