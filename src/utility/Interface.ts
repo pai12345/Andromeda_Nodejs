@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import { Express } from "express";
 //=============================Enum================================//
 /**
  * Enumeration for API Status
@@ -202,4 +202,13 @@ export interface Proto_MongoDB_Interface {
     schema_definition: mongoose.Schema,
     collection: any
   ): mongoose.Model<mongoose.Document>;
+}
+
+/**
+ * Interface - Proto_GraphQLServer
+ * @description
+ * Interface for Proto_GraphQLServer
+ */
+export interface Proto_GraphQLServer_Interface {
+  add_configuration(): Express;
 }

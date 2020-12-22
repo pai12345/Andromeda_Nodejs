@@ -1,5 +1,5 @@
 import Proto_Customer from "../templates/class/ProtoCustomerClass";
-import oServe_Utility from "../dev/UtilityClass";
+import oServe_Utility from "./utilityClass";
 import {
   Customer_GetCustomerDetails_interface,
   Error_Customer_enum,

@@ -1,6 +1,6 @@
-import oServe_Customer from "../../../../dev/CustomerClass";
-import oServe_Utility from "../../../../dev/UtilityClass";
-import oServe_Mongo from "../../../../dev/DB_MongoClass";
+import oServe_Customer from "../../../../dev/customerClass";
+import oServe_Utility from "../../../../dev/utilityClass";
+import oServe_Mongo from "../../../../dev/db_MongoClass";
 import {
   Login_Resolver_interface,
   Error_Customer_enum,
