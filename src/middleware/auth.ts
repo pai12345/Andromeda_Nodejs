@@ -9,10 +9,10 @@ import { RequestHandler } from "express";
 
 const auth_middleware: RequestHandler = async (req, res, next) => {
   try {
-    console.log(req);
+    console.log(`Request:${req}`);
     res.header("x-auth-token", oServe_Utility.GenerateJWT().token);
     res.header("x-csrf-token", oServe_Utility.GenerateCSRFToken().token);
-    console.log(res);
+    console.log(`Result:${res}`);
     return next();
   } catch (error) {
     res.status(error.esponse.status).send(error);
