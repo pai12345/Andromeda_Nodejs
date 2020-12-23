@@ -10,12 +10,18 @@ import { Proto_GraphQLServer_Interface } from "../../utility/Interface";
 import Proto_GraphQLServer from "../../templates/class/server/Proto_server";
 import oServe_Utility from "../../dev/helper/helper";
 
+/**
+ * Class - GraphQLServer
+ * @description
+ * Class having implementation details for GraphQL server
+ */
 class GraphQLServer
   extends Proto_GraphQLServer
   implements Proto_GraphQLServer_Interface {
   constructor() {
     super();
   }
+
   /**
    * Function - Add Configuration
    * @description
@@ -45,6 +51,13 @@ class GraphQLServer
     app.use(route_middleware);
     return app;
   }
+
+  /**
+   * Function - Check Header Tokens
+   * @param req Express Request Object
+   * @param res Express Response Object
+   * @description Function to Check Header Tokens
+   */
   check_header_tokens(req: Request, res: Response) {
     try {
       const headers = req.headers;
@@ -64,6 +77,13 @@ class GraphQLServer
       throw new Error(error);
     }
   }
+
+  /**
+   * Function - Propagate Headers
+   * @param req Express Request Object
+   * @param res Express Response Object
+   * @description Function to Propagate Headers
+   */
   propagate_headers(req: Request, res: Response) {
     try {
       let i;

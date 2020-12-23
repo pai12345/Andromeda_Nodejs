@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Express } from "express";
+import { Express, Request, Response } from "express";
 //=============================Enum================================//
 /**
  * Enumeration for API Status
@@ -211,4 +211,18 @@ export interface Proto_MongoDB_Interface {
  */
 export interface Proto_GraphQLServer_Interface {
   add_configuration(): Express;
+  check_header_tokens(
+    req: Request,
+    res: Response
+  ): {
+    req: Request;
+    res: Response;
+  };
+  propagate_headers(
+    req: Request,
+    res: Response
+  ): {
+    req: Request;
+    res: Response;
+  };
 }

@@ -9,11 +9,11 @@ import graphQLServer from "../dev/server/server";
 
 const auth_middleware: RequestHandler = async (req, res, next) => {
   try {
-    //Check Header Tokens for Istio
-    graphQLServer.propagate_headers(req, res);
-
     //Check Header Tokens for JWT and CSRF
     graphQLServer.check_header_tokens(req, res);
+
+    //Check Header Tokens for Istio
+    graphQLServer.propagate_headers(req, res);
 
     return next();
   } catch (error) {
