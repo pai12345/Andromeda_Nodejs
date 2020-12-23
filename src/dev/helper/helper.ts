@@ -12,7 +12,6 @@ import pool from "../../templates/database/PostgreSQL";
 import bcrypt from "bcryptjs";
 import Tokens from "csrf";
 import jwt from "jsonwebtoken";
-
 /**
  * Class - Utility
  * @description
@@ -184,7 +183,7 @@ class Sub_Utility extends Proto_Utility implements Proto_Utility_interface {
    * Function to check if value is null | undefined
    */
   NullishCoalesce(data: any) {
-    const validate = data ?? Status.NotResponding;
+    const validate = data ?? false;
     return validate;
   }
 }

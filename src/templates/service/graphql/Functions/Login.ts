@@ -46,7 +46,7 @@ const Login_Func = async (args: Login_Resolver_interface, req: any) => {
         oServe_Mongo.Disconnect_DB();
         const check = oServe_Utility.NullishCoalesce(getCustomer);
 
-        if (check !== Status.NotResponding) {
+        if (check !== false) {
           const test_password = await oServe_Utility.CompareCryptPassword(
             password,
             getCustomer.password

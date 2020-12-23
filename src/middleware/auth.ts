@@ -1,5 +1,5 @@
-import oServe_Utility from "../dev/helper/helper";
 import { RequestHandler } from "express";
+import graphQLServer from "../dev/server/server";
 
 /**
  * Middleware - Preflight Check
@@ -9,10 +9,12 @@ import { RequestHandler } from "express";
 
 const auth_middleware: RequestHandler = async (req, res, next) => {
   try {
-    console.log(`Request:${req}`);
-    res.header("x-auth-token", oServe_Utility.GenerateJWT().token);
-    res.header("x-csrf-token", oServe_Utility.GenerateCSRFToken().token);
-    console.log(`Result:${res}`);
+    //Check Header Tokens for Istio
+    graphQLServer.propagate_headers(req, res);
+
+    //Check Header Tokens for JWT and CSRF
+    graphQLServer.check_header_tokens(req, res);
+
     return next();
   } catch (error) {
     res.status(error.esponse.status).send(error);
