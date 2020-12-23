@@ -1,7 +1,7 @@
 import {
   Customer_GetCustomerDetails_interface,
   Proto_Customer_interface,
-} from "../../utility/Interface";
+} from "../../../utility/Interface";
 
 /**
  * Template - Customers Class Prototype

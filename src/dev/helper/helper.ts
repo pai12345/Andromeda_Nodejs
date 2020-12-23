@@ -1,4 +1,4 @@
-import Proto_Utility from "../templates/class/ProtoUtilityClass";
+import Proto_Utility from "../../templates/class/helper/Proto_helper";
 import isEmail from "validator/lib/isEmail";
 import isEmpty from "validator/lib/isEmpty";
 import isLength from "validator/lib/isLength";
@@ -7,8 +7,8 @@ import {
   Error_Customer_enum,
   Proto_Utility_interface,
   GenerateMessage_graphql_input_interface,
-} from "../utility/Interface";
-import pool from "../templates/database/PostgreSQL";
+} from "../../utility/Interface";
+import pool from "../../templates/database/PostgreSQL";
 import bcrypt from "bcryptjs";
 import Tokens from "csrf";
 import jwt from "jsonwebtoken";

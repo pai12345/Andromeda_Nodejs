@@ -1,4 +1,4 @@
-import oServe_Mongo from "../../../dev/db_MongoClass";
+import oServe_Mongo from "../../../dev/mongo/mongo";
 
 const Customer = oServe_Mongo.Define_Schema({
   customerid: { type: Number, unique: true },

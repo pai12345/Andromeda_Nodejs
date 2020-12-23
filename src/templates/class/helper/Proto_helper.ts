@@ -4,7 +4,7 @@ import {
   GenerateCSRFToken_Response_Interface,
   GenerateJWT_Response_Interface,
   ResultObj_Response_Interface,
-} from "../../utility/Interface";
+} from "../../../utility/Interface";
 
 /**
  * Template - Utility Class Prototype

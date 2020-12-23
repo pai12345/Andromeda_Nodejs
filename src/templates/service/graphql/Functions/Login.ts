@@ -1,12 +1,12 @@
-import oServe_Customer from "../../../../dev/customerClass";
-import oServe_Utility from "../../../../dev/utilityClass";
-import oServe_Mongo from "../../../../dev/db_MongoClass";
+import oServe_Customer from "../../../../dev/customer/customer";
+import oServe_Utility from "../../../../dev/helper/helper";
+import oServe_Mongo from "../../../../dev/mongo/mongo";
 import {
   Login_Resolver_interface,
   Error_Customer_enum,
   Status,
 } from "../../../../utility/Interface";
-import generateModel from "../../../model/MongoDB/customer";
+import generateModel from "../../../model/mongo/customer";
 
 const Login_Func = async (args: Login_Resolver_interface, req: any) => {
   try {

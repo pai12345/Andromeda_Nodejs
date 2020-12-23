@@ -1,13 +1,13 @@
 import cors from "cors";
 import helmet from "helmet";
 import compression from "compression";
-import session_middleware from "../middleware/session";
-import auth_middleware from "../middleware/auth";
-import grpahql_middleware from "../middleware/graphql";
-import route_middleware from "../middleware/route";
+import session_middleware from "../../middleware/session";
+import auth_middleware from "../../middleware/auth";
+import grpahql_middleware from "../../middleware/graphql";
+import route_middleware from "../../middleware/route";
 import express, { json } from "express";
-import { Proto_GraphQLServer_Interface } from "../utility/Interface";
-import Proto_GraphQLServer from "../templates/class/ProtoserverClass";
+import { Proto_GraphQLServer_Interface } from "../../utility/Interface";
+import Proto_GraphQLServer from "../../templates/class/server/Proto_server";
 
 class GraphQLServer
   extends Proto_GraphQLServer

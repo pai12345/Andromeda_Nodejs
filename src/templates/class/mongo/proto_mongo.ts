@@ -1,4 +1,4 @@
-import { Status, Proto_MongoDB_Interface } from "../../utility/Interface";
+import { Status, Proto_MongoDB_Interface } from "../../../utility/Interface";
 import mongoose from "mongoose";
 
 /**

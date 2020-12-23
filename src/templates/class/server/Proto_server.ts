@@ -1,5 +1,5 @@
 import { Express } from "express";
-import { Proto_GraphQLServer_Interface } from "../../utility/Interface";
+import { Proto_GraphQLServer_Interface } from "../../../utility/Interface";
 
 /**
  * Template - GraphQLServer Prototype

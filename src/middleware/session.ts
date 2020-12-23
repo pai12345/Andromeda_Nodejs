@@ -1,6 +1,6 @@
 import session from "express-session";
 import MongoDB_ConnectSession from "connect-mongodb-session";
-import oServe_Utility from "../dev/utilityClass";
+import oServe_Utility from "../dev/helper/helper";
 import express from "express";
 import generateEnv from "../config/config";
 import { Status } from "../utility/Interface";

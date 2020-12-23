@@ -2,7 +2,7 @@ import { graphqlHTTP } from "express-graphql";
 import resolvers from "../templates/service/graphql/resolver";
 import { typeDefs } from "../templates/service/graphql/schema";
 import { URL_enum } from "../utility/Interface";
-import oServe_Utility from "../dev/utilityClass";
+import oServe_Utility from "../dev/helper/helper";
 import express from "express";
 
 const app = express();

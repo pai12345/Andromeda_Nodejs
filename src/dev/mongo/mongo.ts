@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import { Status, Proto_MongoDB_Interface } from "../utility/Interface";
-import generateEnv from "../config/config";
-import Proto_MongoDB from "../templates/class/ProtoDB_MongoClass";
+import { Status, Proto_MongoDB_Interface } from "../../utility/Interface";
+import generateEnv from "../../config/config";
+import Proto_MongoDB from "../../templates/class/mongo/proto_mongo";
 
 /**
  * Class - MongoDB

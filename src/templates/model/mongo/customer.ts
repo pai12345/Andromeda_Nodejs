@@ -1,5 +1,5 @@
-import generateSchema from "../../schema/MongoDB/customer";
-import oServe_Mongo from "../../../dev/db_MongoClass";
+import generateSchema from "../../schema/mongo/customer";
+import oServe_Mongo from "../../../dev/mongo/mongo";
 
 const Customer = oServe_Mongo.Define_Model(
   "Customer",

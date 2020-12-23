@@ -1,6 +1,6 @@
 import generateEnv from "./config/config";
 import { Status } from "./utility/Interface";
-import graphQLServer from "./dev/serverClass";
+import graphQLServer from "./dev/server/server";
 
 const PORT = generateEnv().PORT;
 

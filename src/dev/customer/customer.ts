@@ -1,10 +1,10 @@
-import Proto_Customer from "../templates/class/ProtoCustomerClass";
-import oServe_Utility from "./utilityClass";
+import Proto_Customer from "../../templates/class/customer/Proto_customer";
+import oServe_Utility from "../helper/helper";
 import {
   Customer_GetCustomerDetails_interface,
   Error_Customer_enum,
   Proto_Customer_interface,
-} from "../utility/Interface";
+} from "../../utility/Interface";
 
 /**
  * Class - Customer
