@@ -1,4 +1,4 @@
-# Pull Nodejs image
+# Nodejs image
 FROM node
 
 #Create working directory

@@ -68,5 +68,5 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
-  "exclude": ["webpack.config.js", "webpack.config.prod.js"]
+  "exclude": ["webpack.config.js", "webpack.config.prod.js","./scripts/*"]
 }
