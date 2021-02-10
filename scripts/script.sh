@@ -143,7 +143,7 @@ function validate_prerequisites(){
   # Check for package.json
   local file_packagejson="./package.json"
   check_for_file $file_packagejson
-    if [[ ! $? -eq 0 ]]; then   
+    if [[ $? -ne 0 ]]; then   
       echo "package.json not found in $current_path"
       exit 1
     fi
@@ -151,7 +151,7 @@ function validate_prerequisites(){
   # Check for package-lock.json
   local file_packagelockjson="./package-lock.json"
   check_for_file $file_packagelockjson
-    if [[ ! $? -eq 0 ]]; then
+    if [[ $? -ne 0 ]]; then
       echo "package-lock.json not found in $current_path"
       exit 1
     fi
@@ -159,7 +159,7 @@ function validate_prerequisites(){
   # Check for tsconfig.json
   local file_tsconfigjson="./tsconfig.json"
   check_for_file $file_tsconfigjson
-    if [[ ! $? -eq 0 ]]; then
+    if [[ $? -ne 0 ]]; then
       echo "tsconfig.json not found in $current_path"
       exit 1
     fi
@@ -167,7 +167,7 @@ function validate_prerequisites(){
   # Check for webpack.config.prod.js
   local file_webpackprod="./webpack.config.prod.js"
   check_for_file $file_webpackprod
-    if [[ ! $? -eq 0 ]]; then
+    if [[ $? -ne 0 ]]; then
       echo "webpack.config.prod.js not found in $current_path"
       exit 1
     fi
@@ -175,7 +175,7 @@ function validate_prerequisites(){
   # Check for webpack.config.prod.js
   local file_webpackdev="./webpack.config.js"
   check_for_file $file_webpackdev
-    if [[ ! $? -eq 0 ]]; then
+    if [[ $? -ne 0 ]]; then
       echo "webpack.config.js not found in $current_path"
       exit 1
     fi
@@ -183,7 +183,7 @@ function validate_prerequisites(){
   # Check for Dockerfile
   local file_Dockerfile="./Dockerfile"
   check_for_file $file_Dockerfile
-    if [[ ! $? -eq 0 ]]; then
+    if [[ $? -ne 0 ]]; then
       echo "Dockerfile not found in $current_path"
       exit 1
     fi

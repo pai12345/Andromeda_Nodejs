@@ -19,7 +19,7 @@ pipeline{
                   catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') { 
                     try { 
                       echo "Cloning Repo"
-                        git credentialsId: 'github-credential', url: 'https://github.com/pai12345/Andromeda_Nodejs.git'  
+                        git credentialsId: 'github-credential', url: 'https://github.com/pai12345/Andromeda_Nodejs.git', branch:'/*master', doGenerateSubmoduleConfigurations:'false', extensions: [], submoduleCfg: [], userRemoteConfigs: [[]] 
                     } catch (Throwable e) {
                         caughtException = e
                     }
