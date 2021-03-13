@@ -1,6 +1,6 @@
-### Project for Andromeda - Microservices
+### Project for Andromeda - GraphQL
 
-Project for developing Microservices for Andromeda.
+Project for developing GraphQL Microservices for Andromeda.
 
 ### Install
 

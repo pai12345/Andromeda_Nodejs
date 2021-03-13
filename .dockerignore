@@ -1,23 +1,19 @@
 # Dependencies
-node_modules
-
-# Source
-src
+node_modules/
 
 # Scripts
-script
+scripts/
+**.sh
+
+# Source
+src/
+
+# Env Files
+.env
 
 # git
 .git
 .gitignore
-
-# Misc
-**.sh
-.env
-.DS_Store
-
-# Config
-tsconfig.json
 
 # Docker
 Dockerfile
@@ -28,6 +24,10 @@ Jenkinsfile
 # Misc
 README.md
 LICENSE.md
+.DS_Store
+
+# Config
+tsconfig.json
 
 # Webpack
 webpack.config.js

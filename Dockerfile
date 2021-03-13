@@ -1,20 +1,26 @@
 # Nodejs image
-FROM node
+FROM node:15.13.0-alpine3.10
 
-#Create working directory
+# Create user and group
+RUN addgroup app && adduser -S -G app app
+
+# Create working directory
 WORKDIR /app
 
-#COPY pakcage.json
-COPY package*.json /app/
+# COPY package.json && package-lock.json
+COPY package*.json .
 
-#Install npm dependencies & audit fix npm dependencies
-RUN npm ci --production && npm audit fix
+# Install npm dependencies & run audit fix for dependencies
+RUN npm ci --only=production && npm audit fix
 
-#COPY 
-COPY . /app
+# COPY contents to app
+COPY . .
 
-#Execute App
-CMD npm start
+# Set user
+USER app
 
-#Expose Port
+# Expose Port
 EXPOSE 8000
+
+# Execute App
+ENTRYPOINT ["npm", "start"]
