@@ -15,7 +15,10 @@ jobs:
           echo "First Hello World 3"
   run-shell-command2:
     runs-on: ubuntu-latest
+<<<<<<< HEAD
     needs: ["run-shell-command1"]
+=======
+>>>>>>> Added github workflows
     steps:
       - name: echo command
         shell: bash
