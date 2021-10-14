@@ -1,0 +1,21 @@
+name: Nodejs Test
+on:
+  push:
+    branches:
+      - 'master'
+env:
+  test: test1
+jobs:
+  BUILD:
+    runs-on: ubuntu-latest
+    services:
+      app:
+        image: ubuntu:latest
+        ports:
+          - 3000:3000
+    steps:
+      - name: clone
+        shell: bash
+        run: |
+          echo "Hallo World"
+        
