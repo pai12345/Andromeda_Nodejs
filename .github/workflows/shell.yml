@@ -1,0 +1,8 @@
+name: Shell Script
+on: [push]
+jobs:
+  run-shell-command:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo command
+        run: echo "Hallo World"
