@@ -26,4 +26,7 @@ jobs:
           echo "Second Hello World 1"
           echo "Second Hello World 2"
           echo "Second Hello World 3"
+      - name: echo command git
+        shell: bash
+        run: echo "${{ github }}"
       
