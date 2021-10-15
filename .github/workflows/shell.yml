@@ -5,4 +5,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo command
-        run: echo "Hallo World"
+        shell: bash
+        run: echo "First Hello World"
+      - name: multi echo command
+        shell: bash
+        run: |
+          echo "First Hello World 1"
+          echo "First Hello World 2"
+          echo "First Hello World 3"
+  run-shell-command:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo command
+        shell: bash
+        run: echo "Second Hello World"
+      - name: multi echo command
+        shell: bash
+        run: |
+          echo "Second Hello World 1"
+          echo "Second Hello World 2"
+          echo "Second Hello World 3"
+      
