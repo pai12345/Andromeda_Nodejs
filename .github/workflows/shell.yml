@@ -1,7 +1,7 @@
 name: Shell Script
 on: [push]
 jobs:
-  run-shell-command:
+  run-shell-command1:
     runs-on: ubuntu-latest
     steps:
       - name: echo command
@@ -13,7 +13,7 @@ jobs:
           echo "First Hello World 1"
           echo "First Hello World 2"
           echo "First Hello World 3"
-  run-shell-command:
+  run-shell-command2:
     runs-on: ubuntu-latest
     steps:
       - name: echo command
