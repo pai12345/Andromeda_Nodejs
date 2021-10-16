@@ -1,5 +1,5 @@
 name: Shell Script
-on: [push,pull]
+on: [push,pull_request]
 jobs:
   run-shell-command1:
     runs-on: ubuntu-latest
