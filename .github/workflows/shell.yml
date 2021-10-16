@@ -1,5 +1,5 @@
 name: Shell Script
-on: [push]
+on: [push,pull]
 jobs:
   run-shell-command1:
     runs-on: ubuntu-latest
@@ -15,10 +15,7 @@ jobs:
           echo "First Hello World 3"
   run-shell-command2:
     runs-on: ubuntu-latest
-<<<<<<< HEAD
     needs: ["run-shell-command1"]
-=======
->>>>>>> Added github workflows
     steps:
       - name: echo command
         shell: bash
