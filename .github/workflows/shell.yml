@@ -1,5 +1,8 @@
 name: Shell Script
-on: [push,pull_request]
+on: 
+  push:
+    branches:
+    - 'feature/**'
 jobs:
   run-shell-command1:
     runs-on: ubuntu-latest
