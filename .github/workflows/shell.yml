@@ -2,7 +2,7 @@ name: Shell Script
 on: 
   pull_request:
     branches:
-    - 'feature/**'
+    - 'master'
 jobs:
   run-shell-command1:
     runs-on: ubuntu-latest
