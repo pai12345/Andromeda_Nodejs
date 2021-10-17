@@ -2,7 +2,7 @@ name: Shell Script
 on: 
   push:
     branches:
-    - 'feature/**'
+    - 'feature1/**'
 jobs:
   run-shell-command1:
     runs-on: ubuntu-latest
